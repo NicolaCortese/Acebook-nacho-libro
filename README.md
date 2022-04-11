@@ -14,7 +14,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+https://trello.com/b/uX1363Jy/%E2%98%A0-nacho-libro-%E2%98%A0
 
 ## Quickstart
 
