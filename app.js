@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const Post = require("./models/post.js")
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -74,5 +75,14 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
+const message = new Post({
+  message: "im so done with this",
+  author: "Maria",
+  createdAt: "02-03-1888",
+  image_url: "https://i.pinimg.com/736x/ba/92/7f/ba927ff34cd961ce2c184d47e8ead9f6.jpg"
+})
+
+message.save();
 
 module.exports = app;

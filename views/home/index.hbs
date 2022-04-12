@@ -1,2 +1,8 @@
 <h1 class="title">{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<p>{{posts}}</p>
+<ul class="posts">
+  {{#each posts}}
+  <li>{{this.message}}</li>
+  {{/each}}
+</ul>

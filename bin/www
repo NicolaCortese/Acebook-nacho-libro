@@ -21,12 +21,11 @@ app.set("port", port);
  **/
 
 var mongoDbUrl =
-  process.env.MONGODB_URL ||
-  "mongodb+srv://nacholibro:makers2022@cluster0.njrw6.mongodb.net/aceBook?retryWrites=true&w=majority";
-mongoose.connect(mongoDbUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+  "mongodb+srv://nacholibro:makers2022@cluster0.njrw6.mongodb.net/acebook?retryWrites=true&w=majority";
+  mongoose.connect(
+    "mongodb+srv://nacholibro:makers2022@cluster0.njrw6.mongodb.net/acebook?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  );
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
