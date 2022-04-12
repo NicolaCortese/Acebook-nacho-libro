@@ -6,7 +6,14 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
+    console.log("creating a new user");
+    console.log(req.body);
+    const user = new await User(req.body);
+    const duplicate = User.exists({ name: req.body.email });
+    
+    console.log(duplicate);
+
+    // console.log(user);
     user.save((err) => {
       if (err) {
         throw err;

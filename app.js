@@ -38,6 +38,7 @@ app.use(
 
 // clear the cookies after user logs out
 app.use((req, res, next) => {
+  console.log("checking if clearing cookies");
   if (req.cookies.user_sid && !req.session.user) {
     res.clearCookie("user_sid");
   }
@@ -46,6 +47,10 @@ app.use((req, res, next) => {
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
+  // console.log(req.session);
+  // console.log("END OF req SESSION");
+  // console.log(res);
+  // console.log("END OF res");
   if (!req.session.user && !req.cookies.user_sid) {
     res.redirect("/sessions/new");
   } else {
@@ -59,13 +64,16 @@ app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 
+// because it has no path every request will come through this
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
+  console.log("catch 404");
   next(createError(404));
 });
 
 // error handler
 app.use((err, req, res) => {
+  console.log("error handler");
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};

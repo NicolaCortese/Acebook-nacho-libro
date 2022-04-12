@@ -7,5 +7,14 @@ describe("Registration", () => {
     cy.get("#submit").click();
 
     cy.url().should("include", "/sessions/new");
+    
+    // sign up from the homepage
+    cy.visit("/");
+    cy.get("#signup").click();
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    cy.url().should("include", "/sessions/new");
   });
 });
