@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -15,6 +16,7 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    post.user_id = req.session.user;
     post.save((err) => {
       if (err) {
         throw err;
@@ -23,6 +25,9 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+  Like: (req, res) => {
+    Post.likes.push(req.session.user)
+  }
 };
 
 module.exports = PostsController;

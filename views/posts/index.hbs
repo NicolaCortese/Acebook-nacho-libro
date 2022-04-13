@@ -1,7 +1,12 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each (reverse posts)}}
-  <li>{{this.message}}</li>
+  <li>Posted by: {{this.user_id}}
+    <img src="{{this.image_url}}">{{this.message}}
+    <button class="like-button" id="{{this._id}}">Like</button>
+    Liked by:
+      {{this.likes.liked_by}}
+  </li>
   {{/each}}
 </ul>
 
