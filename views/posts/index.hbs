@@ -1,6 +1,6 @@
 <h1>Timeline</h1>
 <ul class="posts">
-  {{#each posts}}
+  {{#each (reverse posts)}}
   <li>{{this.message}}</li>
   {{/each}}
 </ul>
