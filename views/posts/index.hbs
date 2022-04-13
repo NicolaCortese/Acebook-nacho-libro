@@ -1,11 +1,15 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each (reverse posts)}}
-  <li>Posted by: {{this.user_id}}
-    <img src="{{this.image_url}}">{{this.message}}
-    <button class="like-button" id="{{this._id}}">Like</button>
-    Liked by:
-      {{this.likes.liked_by}}
+  <li>Posted by: {{this.user_id}}<br>
+    <img src="{{this.image_url}}"><br>
+    {{this.message}}<br>
+    <button class="like-button" id="{{this._id}}" onclick=""actOnPost(event) data-post-id="{{ this.id }}">Like</button><br>
+    Number of likes: <span id="likes-count-{{ this.id }}">{{ this.likes_count }}</span><br>
+    Liked by:<br>
+    {{#each this.likes}}
+      {{this}}<br>
+    {{/each}}
   </li>
   {{/each}}
 </ul>

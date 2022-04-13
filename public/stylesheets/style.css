@@ -6,3 +6,18 @@ body {
 a {
   color: #00B7FF;
 }
+
+.link-button {
+  background: none;
+  border: none;
+  outline: none;
+  color: #00B7FF;
+  text-decoration: none;
+  cursor: pointer;
+}
+.link-button:focus {
+  outline: none;
+}
+.link-button:active {
+  color:#00B7FF;
+}

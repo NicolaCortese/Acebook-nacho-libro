@@ -1,5 +1,4 @@
 const Post = require("../models/post");
-const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -26,7 +25,11 @@ const PostsController = {
     });
   },
   Like: (req, res) => {
-    Post.likes.push(req.session.user)
+    const action = req.body.action;
+    const counter = action === 'Like' ? 1 : -1;
+    Post.updateOne({_id: req.params.id}, {$inc: {likes_count: counter}}, {}, (err, numberAffected) => {
+      res.send('');
+  });
   }
 };
 
