@@ -1,19 +1,14 @@
-// const User = require('../../models/user');
+const mongoose = require("mongoose");
 
-describe('Registration', () => {
-  // beforeEach(() => {
-  //   await User.deleteMany();
-  // })
+// require("../../spec/mongodb_helper");
 
-  it('A user signs up and is redirected to sign in', () => {
-    // sign up
-    cy.visit('/users/new');
-    cy.get('#email').type('someone@example.com');
-    cy.get('#password').type('password');
-    cy.get('#submit').click();
 
-    cy.url().should('include', '/sessions/new');
+describe("Registration", () => {
+  before( async () => {
+    await mongoose.connection.collections.users.drop()
+  });
 
+  it("A user signs up and is redirected to sign in", () => {
     // sign up from the homepage
     cy.visit('/');
     cy.get('#signup').click();
@@ -32,5 +27,20 @@ describe('Registration', () => {
 
     cy.url().should('include', './users/new');
     cy.should('include', 'User already exists');
+  });
+
+  it("will not sign up if the email already exists", () => {
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    cy.url().should("include", "/users/new");
+    //add an error message here
   });
 });

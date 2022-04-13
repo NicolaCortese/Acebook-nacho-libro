@@ -5,21 +5,24 @@ const UsersController = {
     res.render("users/new", {});
   },
 
-  Create: (req, res) => {
+  Create: async (req, res) => {
     console.log("creating a new user");
     console.log(req.body);
-    const user = new await User(req.body);
-    const duplicate = User.exists({ name: req.body.email });
-    
-    console.log(duplicate);
+    const user = new User(req.body);
+    const duplicate = await User.exists({ email: req.body.email });
 
-    // console.log(user);
-    user.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
-    });
+    if (duplicate) {
+      console.log("this email already exists");
+      res.redirect("/users/new");
+    } else {
+      // console.log(user);
+      user.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
+      });
+    }
   },
 };
 
