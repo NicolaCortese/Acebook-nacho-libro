@@ -5,11 +5,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
-
 const homeRouter = require('./routes/home');
 const postsRouter = require('./routes/posts');
 const sessionsRouter = require('./routes/sessions');
 const usersRouter = require('./routes/users');
+const { handlebars } = require("hbs");
 
 const app = express();
 
@@ -82,5 +82,8 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// custom handlebar helpers
+handlebars.registerHelper('reverse', (array) => array.reverse());
 
 module.exports = app;
