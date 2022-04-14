@@ -1,7 +1,7 @@
 const likeButton = document.querySelectorAll('.like-button');
 likeButton.forEach(element => {
   element.addEventListener('click', () => {
-    axios.post(`/posts/#{element.id}/like`, {
+    axios.post(`/posts/${element.id}/like`, {
       post_id: element.id,
     })
     .then(function (response) {
