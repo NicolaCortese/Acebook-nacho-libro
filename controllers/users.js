@@ -9,18 +9,28 @@ const UsersController = {
     // console.log(req.body);
     const user = new User(req.body);
 
-    // Return when the fields are empty
-    if (user.username === '' || user.email === '' || user.password === '') {
-      console.log('Enter the name or password.');
+    // Stay on the same page when fields are empty.
+    if (!user.username || !user.email || !user.password) {
+      console.log('Please fill in all fields.');
       res.redirect('/users/new');
     } else {
-      const userAlreadyExists = await User.find({
-        $or: [{ email: req.body.email }, { username: req.body.username }],
+      const usernameAlreadyExists = await User.findOne({
+        username: req.body.username,
       });
 
-      console.log(userAlreadyExists);
-      if (userAlreadyExists) {
-        console.log('This user already exists');
+      const emailAlreadyExists = await User.findOne({
+        email: req.body.email,
+      });
+
+      // const userAlreadyExists = await User.find({
+      //   $or: [{ email: req.body.email }, { username: req.body.username }],
+      // });
+
+      if (emailAlreadyExists) {
+        console.log('This email already exists. Would you like to sign in?');
+        res.redirect('/users/new');
+      } else if (usernameAlreadyExists) {
+        console.log('This username is already taken.');
         res.redirect('/users/new');
       } else {
         console.log('creating a new user');
