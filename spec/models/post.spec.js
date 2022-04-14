@@ -37,4 +37,19 @@ describe("Post model", () => {
       });
     });
   });
+
+  it("can upload and see the image",  (done) => {
+    let post = new Post({ message: "image test", image_url: "https://picsum.photos/536/354" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "image test", image_url: "https://picsum.photos/536/354" });
+        done();
+      });
+    });
+  });
 });
