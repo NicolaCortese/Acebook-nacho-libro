@@ -26,11 +26,16 @@ const PostsController = {
   },
   Like: (req, res) => {
     const action = req.body.action;
-    const counter = action === 'Like' ? 1 : -1;
-    Post.updateOne({_id: req.params.id}, {$inc: {likes_count: counter}}, {}, (err, numberAffected) => {
-      res.send('');
-  });
-  }
+    const user_id = req.session.user;
+    Post.updateOne(
+      { _id: req.params.id },
+      { $push: { likes: "ha" } },
+      {},
+      (err, numberAffected) => {
+        res.send('hi');
+      }
+    );
+  },
 };
 
 module.exports = PostsController;

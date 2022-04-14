@@ -4,14 +4,16 @@ likeButton.forEach(element => {
     axios.post(`/posts/${element.id}/like`, {
       post_id: element.id,
     })
-    .then(function (response) {
-      console.log(response);
-    })
     .catch(function (error) {
       console.log(error);
     });
   })
+
 })
+
+let toggleLikeButton = {
+  Like: ()
+}
 let updatePostStats = {
   Like: function (postId) {
       document.querySelector('#likes-count-' + postId).textContent++;
@@ -31,9 +33,9 @@ let toggleButtonText = {
 };
 
 let actOnPost = function (event) {
-  let postId = event.target.dataset.postId;
-  let action = event.target.textContent.trim();
-  toggleButtonText[action](event.target);
-  updatePostStats[action](postId);
-  axios.post('/posts/' + postId + '/act', { action: action });
+  // let postId = event.target.dataset.postId;
+  // let action = event.target.textContent.trim();
+  // toggleButtonText[action](event.target);
+  // updatePostStats[action](postId);
+  // axios.post('/posts/' + postId + '/act', { action: action });
 }; 
