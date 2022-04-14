@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
 const UsersController = {
@@ -8,6 +9,10 @@ const UsersController = {
   Create: async (req, res) => {
     // console.log(req.body);
     const user = new User(req.body);
+
+    // Hash the password
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
 
     // Stay on the same page when fields are empty.
     if (!user.username || !user.email || !user.password) {
