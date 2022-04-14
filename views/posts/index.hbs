@@ -6,10 +6,10 @@
   <img src="{{this.image_url}}"><br>
   {{this.message}}<br>
   <button class="like-button" id="{{this._id}}">Like</button><br>
-    Number of likes: <span id="likes-count-{{ this._id }}">{{ this.likes.length }}</span><br>
+    Number of likes: <span class="likes-count" id="likes-count-{{ this._id }}">{{ this.likes.length }}</span><br>
     Liked by:<br>
     {{#each this.likes}}
-      {{this.username}}<br>
+     <span class="liked-by">{{this.username}}</span><br>
     {{/each}}
   </li>
   {{/each}}
