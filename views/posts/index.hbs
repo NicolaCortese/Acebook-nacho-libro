@@ -5,11 +5,11 @@
   Posted by: {{this.user_id}}<br>
   <img src="{{this.image_url}}"><br>
   {{this.message}}<br>
-  <button class="like-button" post-id="{{this._id}}" onclick="actOnPost(event)">Like</button><br>
-    Number of likes: <span id="likes-count-{{ this._id }}">{{ this.likes_count }}</span><br>
+  <button class="like-button" id="{{this._id}}">Like</button><br>
+    Number of likes: <span id="likes-count-{{ this._id }}">{{ this.likes.length }}</span><br>
     Liked by:<br>
     {{#each this.likes}}
-      {{this}}<br>
+      {{this.username}}<br>
     {{/each}}
   </li>
   {{/each}}

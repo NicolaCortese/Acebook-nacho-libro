@@ -25,14 +25,13 @@ const PostsController = {
     });
   },
   Like: (req, res) => {
-    const action = req.body.action;
-    const user_id = req.session.user;
+    const post_id = req.body.post_id;
+    const user = req.session.user;
     Post.updateOne(
-      { _id: req.params.id },
-      { $push: { likes: "ha" } },
-      {},
-      (err, numberAffected) => {
-        res.send('hi');
+      { _id: post_id },
+      { $push: { likes: user } },
+      () => {
+        res.send("Like went through to the server");
       }
     );
   },
