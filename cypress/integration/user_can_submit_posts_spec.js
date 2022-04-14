@@ -16,9 +16,10 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").find('#message').type("Hello, world!");
+    cy.get("#new-post-form").find('#image_url').type("https://picsum.photos/536/354");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Hello, world!");
+    cy.get(".posts").should("contain", "Hello, world!", "https://picsum.photos/536/354", "be.visible");
   });
 });
