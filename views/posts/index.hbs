@@ -1,7 +1,9 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each (reverse posts)}}
-  <li>Posted by: {{this.user_id}}<br><img src="{{this.image_url}}"><br>{{this.message}}</li>
+    <li class="post">Posted by:
+      {{this.user_id}}<br /><img src="{{this.image_url}}" /><br
+      />{{this.message}}</li>
   {{/each}}
 </ul>
 
