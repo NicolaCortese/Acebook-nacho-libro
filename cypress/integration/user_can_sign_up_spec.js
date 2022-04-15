@@ -1,9 +1,11 @@
-const mongoose = require('../../spec/mongodb_helper');
+// const mongoose = require("mongoose");
 
-describe('Registration', () => {
-  before(async () => {
-    await mongoose.connection.collections.users.drop();
-  });
+// require("../../spec/mongodb_helper");
+
+describe("Registration", () => {
+  // before( async () => {
+  //   await mongoose.connection.collections.users.drop()
+  // });
 
   it('A user signs up and is redirected to sign in', () => {
     // sign up from the homepage
