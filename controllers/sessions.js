@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
 const SessionsController = {
@@ -8,19 +9,38 @@ const SessionsController = {
   Create: (req, res) => {
     console.log("trying to log in");
     const email = req.body.email;
-    const password = req.body.password;
+    const plainTextPassword = req.body.password;
 
     User.findOne({ email: email }).then((user) => {
+      const hashedPassword = user.password;
+
       if (!user) {
         res.redirect("/sessions/new");
         console.log("Unsuccessful login!");
-      } else if (user.password != password) {
-        res.redirect("/sessions/new");
       } else {
-        console.log("Successfully logged in!");
-        req.session.user = user;
-        res.redirect("/posts");
+        bcrypt.compare(plainTextPassword, hashedPassword, (err, result) => {
+          if (result) {
+            console.log("Successfully logged in!");
+            req.session.user = user;
+            res.redirect("/posts");
+          } else {
+            console.log(err);
+            res.redirect("/sessions/new");
+            console.log("Unsuccessful login!");
+          }
+        });
       }
+
+      // if (!user) {
+      //   res.redirect('/sessions/new');
+      //   console.log('Unsuccessful login!');
+      // } else if (user.password != plainTextPassword) {
+      //   res.redirect('/sessions/new');
+      // } else {
+      //   console.log('Successfully logged in!');
+      //   req.session.user = user;
+      //   res.redirect('/posts');
+      // }
     });
   },
 
