@@ -1,3 +1,16 @@
+beforeEach(() => {
+  cy.log("Before cy.exec");
+  cy.exec("mongo acebook_test --eval 'db.users.remove({})'");
+
+  // cy.log("Before request");
+  // cy.request("POST", "/users", {
+  //   username: "Batman",
+  //   email: "batman@example.com",
+  //   password: "password",
+  // });
+  // cy.log("After request");
+});
+
 // ***********************************************************
 // This example support/index.js is processed and
 // loaded automatically before your test files.
@@ -17,4 +30,4 @@
 // import './commands'
 
 // Alternatively you can use CommonJS syntax:
-require('./commands')
+require("./commands");
