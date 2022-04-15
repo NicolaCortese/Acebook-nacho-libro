@@ -1,14 +1,13 @@
 beforeEach(() => {
-  cy.log("Before cy.exec");
-  cy.exec("mongo acebook_test --eval 'db.users.remove({})'");
-
-  // cy.log("Before request");
-  // cy.request("POST", "/users", {
-  //   username: "Batman",
-  //   email: "batman@example.com",
-  //   password: "password",
-  // });
-  // cy.log("After request");
+  // cy.log("Before cy.exec");
+  // cy.exec("mongo acebook_test --eval 'db.users.remove({})'");
+  //   // cy.log("Before request");
+  //   // cy.request("POST", "/users", {
+  //   //   username: "Batman",
+  //   //   email: "batman@example.com",
+  //   //   password: "password",
+  //   // });
+  //   // cy.log("After request");
 });
 
 // ***********************************************************
