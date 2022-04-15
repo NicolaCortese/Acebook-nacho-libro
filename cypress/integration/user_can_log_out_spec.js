@@ -15,7 +15,7 @@ describe("Logout", ()=> {
 
     //sign out
     cy.visit("/posts");
-    cy.get("#logout").click();
+    cy.get("#link-button").click();
     cy.url().should("include", "/sessions/new");
 
 
