@@ -12,6 +12,7 @@ const SessionsController = {
     const plainTextPassword = req.body.password;
 
     User.findOne({ email: email }).then((user) => {
+      //move this line inside of the else below or it will break when it doesn't find a user
       const hashedPassword = user.password;
 
       if (!user) {

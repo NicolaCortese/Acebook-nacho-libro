@@ -36,6 +36,13 @@ app.use(
   })
 );
 
+// passing the user in session to a local session variable on the response
+app.use((req, res, next) => {
+  res.locals.session = req.session.user;
+  console.log(res.locals.session);
+  next();
+});
+
 // clear the cookies after user logs out
 app.use((req, res, next) => {
   console.log("checking if clearing cookies");
@@ -85,5 +92,6 @@ app.use((err, req, res) => {
 
 // custom handlebar helpers
 handlebars.registerHelper("reverse", (array) => array.reverse());
+// handlebars.registerHelper("ifSignedIn", () => if{}  );
 
 module.exports = app;
