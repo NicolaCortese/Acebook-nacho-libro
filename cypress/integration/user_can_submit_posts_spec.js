@@ -1,8 +1,11 @@
-const webHelper = require("../helper/web_helper");
-
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
-    
+    // sign in
+    cy.visit("/sessions/new");
+    cy.get("#email").type("batman@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
     // submit a post with an image
     cy.visit("/posts");
     cy.contains("New post").click();
@@ -22,7 +25,7 @@ describe("Timeline", () => {
 
     // the post shows the author
 
-    cy.get(".posts").should("contain", "someone");
+    cy.get(".posts").should("contain", "batman");
 
     // submit a second post and check that it appears above the previous post
     cy.visit("/posts");

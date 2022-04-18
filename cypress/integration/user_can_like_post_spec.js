@@ -1,9 +1,10 @@
-/* eslint-disable */
-const signUpAndIn = require("../helper/web_helper");
-
 describe("Likes", () => {
   it("can like the posts, view who liked it and the number of likes", () => {
-    signUpAndIn();
+    // sign in
+    cy.visit("/sessions/new");
+    cy.get("#email").type("batman@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
 
     // submit a post
     cy.visit("/posts");
@@ -15,7 +16,6 @@ describe("Likes", () => {
     cy.get(".like-button").first().click();
     cy.get(".likes-count").should("contain", "1");
     cy.visit("/posts");
-    cy.get(".liked-by").should("contain", "someone");
+    cy.get(".liked-by").should("contain", "batman");
   });
 });
-/* eslint-enable */

@@ -1,8 +1,6 @@
-
 describe("Registration", () => {
   it("A user signs up and is redirected to sign in", () => {
     // sign up from the homepage
-    
     cy.visit("/");
     cy.get("#signup").click();
     cy.get("#username").type("someone");
@@ -13,7 +11,6 @@ describe("Registration", () => {
     cy.url().should("include", "/sessions/new");
   });
 
-  
   it("will not sign up if the email already exists", () => {
     cy.visit("/users/new");
     cy.get("#username").type("someone");

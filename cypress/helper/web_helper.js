@@ -1,6 +1,8 @@
 /* eslint-disable */
+
+//NOT BEING USED FOR THE MOMENT
 const signUpAndIn = () => {
-  console.log("web helper")
+  console.log("web helper");
   describe("Sign up and in", () => {
     it("signs up and in", () => {
       // sign up
