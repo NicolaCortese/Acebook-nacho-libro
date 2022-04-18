@@ -22,14 +22,19 @@ describe("Timeline", () => {
       "https://picsum.photos/536/354",
       "be.visible"
     );
-
-    // the post shows the time scince
+    
+    // the post shows the time since
 
     cy.get(".posts").should("contain", "a few seconds ago");
-   
-    // the post shows the author
 
-    cy.get(".posts").should("contain", "batman");
+    // the post shows the author's username & profile picture
+
+    cy.get(".posts").should(
+      "contain",
+      "batman",
+      "https://picsum.photos/200",
+      "be.visible"
+    );
 
     // submit a second post and check that it appears above the previous post
     cy.visit("/posts");

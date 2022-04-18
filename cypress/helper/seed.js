@@ -16,6 +16,7 @@ const seedDB = async () => {
     email: "batman@example.com",
     password: "password",
     username: "batman",
+    profilePic: "https://picsum.photos/200"
   });
 
   // Hash the password
@@ -28,6 +29,7 @@ const seedDB = async () => {
     email: "joker@example.com",
     password: "password",
     username: "joker",
+    profilePic: "https://picsum.photos/200"
   });
 
   // Hash the password
