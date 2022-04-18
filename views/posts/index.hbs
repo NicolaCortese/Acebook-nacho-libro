@@ -7,6 +7,7 @@
       <img src="{{this.author.profilePic}}" class="profile-pic" />
       {{this.author.username}}<br />
       <img src="{{this.image_url}}" /><br />
+      {{timeAgo this.timestamp}}<br />
       {{this.message}}<br />
       <button class="like-button" id="{{this._id}}">
         {{ifLiked this.likes ../session.username}}

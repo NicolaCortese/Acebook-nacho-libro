@@ -10,12 +10,15 @@ const PostsController = {
       res.render("posts/index", { posts: posts });
     });
   },
+
   New: (req, res) => {
     res.render("posts/new", {});
   },
+
   Create: (req, res) => {
     const post = new Post(req.body);
-    post.author = req.session.user;
+    const user = req.session.user;
+    post.author = { username: user.username, profilePic: user.profilePic };
     post.save((err) => {
       if (err) {
         throw err;
@@ -24,6 +27,7 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+
   Like: (req, res) => {
     const post_id = req.body.post_id;
     const user = req.session.user;
@@ -36,6 +40,7 @@ const PostsController = {
       }
     );
   },
+
   Unlike: (req, res) => {
     const post_id = req.body.post_id;
     const user = req.session.user;

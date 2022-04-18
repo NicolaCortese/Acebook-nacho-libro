@@ -22,6 +22,10 @@ describe("Timeline", () => {
       "https://picsum.photos/536/354",
       "be.visible"
     );
+    
+    // the post shows the time since
+
+    cy.get(".posts").should("contain", "a few seconds ago");
 
     // the post shows the author's username & profile picture
 
