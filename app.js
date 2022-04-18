@@ -92,6 +92,12 @@ app.use((err, req, res) => {
 
 // custom handlebar helpers
 handlebars.registerHelper("reverse", (array) => array.reverse());
-// handlebars.registerHelper("ifSignedIn", () => if{}  );
+handlebars.registerHelper("ifLiked", (postLikedBy, sessionUser) => {
+  if (postLikedBy.includes(sessionUser)) {
+    return "Unlike";
+  } else {
+    return "Like";
+  }
+});
 
 module.exports = app;
