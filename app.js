@@ -39,7 +39,7 @@ app.use(
 // passing the user in session to a local session variable on the response
 app.use((req, res, next) => {
   res.locals.session = req.session.user;
-  console.log(res.locals.session);
+  // console.log(res.locals.session);
   next();
 });
 
