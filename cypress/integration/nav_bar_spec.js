@@ -1,3 +1,5 @@
+
+
 describe("Nav bar", () => {
   describe("When not signed in", () => {
     it("checks it contains all nav elements if not signed in", () => {
