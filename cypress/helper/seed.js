@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const User = require("../../models/user");
 const Post = require("../../models/post");
 
@@ -15,7 +16,12 @@ const seedDB = async () => {
     email: "batman@example.com",
     password: "password",
     username: "batman",
+    profilePic: "https://picsum.photos/200"
   });
+
+  // Hash the password
+  const salt = await bcrypt.genSalt(10);
+  batman.password = await bcrypt.hash(batman.password, salt);
 
   await batman.save();
 
@@ -23,7 +29,11 @@ const seedDB = async () => {
     email: "joker@example.com",
     password: "password",
     username: "joker",
+    profilePic: "https://picsum.photos/200"
   });
+
+  // Hash the password
+  joker.password = await bcrypt.hash(joker.password, salt);
 
   await joker.save();
 
@@ -38,7 +48,7 @@ const seedDB = async () => {
 
   const post2 = new Post({
     message:
-      "ometimes the truth isn’t good enough, sometimes people deserve more.",
+      "Sometimes the truth isn’t good enough, sometimes people deserve more.",
     image_url: "https://picsum.photos/536/354",
     author: batman,
   });

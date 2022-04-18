@@ -1,12 +1,5 @@
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("batman@example.com");
-    cy.get("#password").type("password");
-    cy.get("#username").type("batman");
-    cy.get("#submit").click();
-
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("batman@example.com");
@@ -30,9 +23,14 @@ describe("Timeline", () => {
       "be.visible"
     );
 
-    // the post shows the author
+    // the post shows the author's username & profile picture
 
-    cy.get(".posts").should("contain", "batman");
+    cy.get(".posts").should(
+      "contain",
+      "batman",
+      "https://picsum.photos/200",
+      "be.visible"
+    );
 
     // submit a second post and check that it appears above the previous post
     cy.visit("/posts");

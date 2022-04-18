@@ -24,4 +24,11 @@ describe("Timeline", () => {
     // cy.get("#new-post-form").submit();
     cy.get(".posts").should("contain", "Hello, world!");
   });
+
+  it("can submit posts, when signed in, and view them", () => {
+    cy.visit("/sessions/new");
+    cy.get("#email").type("joker@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+  });
 });

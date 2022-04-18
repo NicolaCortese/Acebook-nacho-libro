@@ -12,14 +12,11 @@ const SessionsController = {
     const plainTextPassword = req.body.password;
 
     User.findOne({ email: email }).then((user) => {
-      //move this line inside of the else below or it will break when it doesn't find a user
-
       if (!user) {
         res.redirect("/sessions/new");
         console.log("Unsuccessful login!");
       } else {
         const hashedPassword = user.password;
-
         bcrypt.compare(plainTextPassword, hashedPassword, (err, result) => {
           if (result) {
             console.log("Successfully logged in!");
@@ -32,17 +29,6 @@ const SessionsController = {
           }
         });
       }
-
-      // if (!user) {
-      //   res.redirect('/sessions/new');
-      //   console.log('Unsuccessful login!');
-      // } else if (user.password != plainTextPassword) {
-      //   res.redirect('/sessions/new');
-      // } else {
-      //   console.log('Successfully logged in!');
-      //   req.session.user = user;
-      //   res.redirect('/posts');
-      // }
     });
   },
 
@@ -53,7 +39,6 @@ const SessionsController = {
     }
     res.redirect("/sessions/new");
   },
-   
 };
 
 module.exports = SessionsController;

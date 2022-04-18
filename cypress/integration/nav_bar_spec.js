@@ -8,16 +8,9 @@ describe("Nav bar", () => {
   });
   describe("When signed in", () => {
     it("checks it contains all nav elements when signed in", () => {
-      // sign up
-      cy.visit("/users/new");
-      cy.get("#email").type("someone@example.com");
-      cy.get('#username').type('someone')
-      cy.get("#password").type("password");
-      cy.get("#submit").click();
-
       // sign in
       cy.visit("/sessions/new");
-      cy.get("#email").type("someone@example.com");
+      cy.get("#email").type("batman@example.com");
       cy.get("#password").type("password");
       cy.get("#submit").click();
 
