@@ -13,12 +13,13 @@ const SessionsController = {
 
     User.findOne({ email: email }).then((user) => {
       //move this line inside of the else below or it will break when it doesn't find a user
-      const hashedPassword = user.password;
 
       if (!user) {
         res.redirect("/sessions/new");
         console.log("Unsuccessful login!");
       } else {
+        const hashedPassword = user.password;
+
         bcrypt.compare(plainTextPassword, hashedPassword, (err, result) => {
           if (result) {
             console.log("Successfully logged in!");
