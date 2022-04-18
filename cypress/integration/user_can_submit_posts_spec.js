@@ -32,10 +32,7 @@ describe("Timeline", () => {
 
     // the post shows the author
 
-    cy.get(".posts").should(
-      "contain",
-      "batman"
-    )
+    cy.get(".posts").should("contain", "batman");
 
     // submit a second post and check that it appears above the previous post
     cy.visit("/posts");

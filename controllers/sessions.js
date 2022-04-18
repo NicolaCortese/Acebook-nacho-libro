@@ -1,13 +1,13 @@
-const bcrypt = require('bcrypt');
-const User = require('../models/user');
+const bcrypt = require("bcrypt");
+const User = require("../models/user");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render('sessions/new', {});
+    res.render("sessions/new", {});
   },
 
   Create: (req, res) => {
-    console.log('trying to log in');
+    console.log("trying to log in");
     const email = req.body.email;
     const plainTextPassword = req.body.password;
 
@@ -16,18 +16,18 @@ const SessionsController = {
       const hashedPassword = user.password;
 
       if (!user) {
-        res.redirect('/sessions/new');
-        console.log('Unsuccessful login!');
+        res.redirect("/sessions/new");
+        console.log("Unsuccessful login!");
       } else {
         bcrypt.compare(plainTextPassword, hashedPassword, (err, result) => {
           if (result) {
-            console.log('Successfully logged in!');
+            console.log("Successfully logged in!");
             req.session.user = user;
-            res.redirect('/posts');
+            res.redirect("/posts");
           } else {
             console.log(err);
-            res.redirect('/sessions/new');
-            console.log('Unsuccessful login!');
+            res.redirect("/sessions/new");
+            console.log("Unsuccessful login!");
           }
         });
       }
@@ -46,11 +46,11 @@ const SessionsController = {
   },
 
   Destroy: (req, res) => {
-    console.log('logging out');
+    console.log("logging out");
     if (req.session.user && req.cookies.user_sid) {
-      res.clearCookie('user_sid');
+      res.clearCookie("user_sid");
     }
-    res.redirect('/sessions/new');
+    res.redirect("/sessions/new");
   },
 };
 

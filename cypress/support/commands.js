@@ -1,3 +1,25 @@
+// const mongoose = require("mongoose");
+// const User = require('../../models/user')
+
+// Cypress.Commands.add("addUsers", () => {
+// mongoose
+//   .connect("mongodb://127.0.0.1/acebook_test", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => {
+//     console.log("Mongo connection open");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+// const batman = new User({
+//   "username": "Batman",
+//   "email": "batman@example.com",
+//   "password": "password"});
+// batman.save();
+// });
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
