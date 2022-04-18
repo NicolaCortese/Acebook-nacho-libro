@@ -23,6 +23,10 @@ describe("Timeline", () => {
       "be.visible"
     );
 
+    // the post shows the time scince
+
+    cy.get(".posts").should("contain", "a few seconds ago");
+   
     // the post shows the author
 
     cy.get(".posts").should("contain", "batman");

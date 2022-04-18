@@ -9,6 +9,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const moment = require('./public/javascripts/moment.min')
 const { handlebars } = require("hbs");
 
 const app = express();
@@ -92,6 +93,6 @@ app.use((err, req, res) => {
 
 // custom handlebar helpers
 handlebars.registerHelper("reverse", (array) => array.reverse());
-// handlebars.registerHelper("ifSignedIn", () => if{}  );
+handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow())
 
 module.exports = app;
