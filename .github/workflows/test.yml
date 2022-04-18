@@ -20,15 +20,11 @@ jobs:
         with:
           node-version: "12.x"
 
-      - name: Install
-        run: npm install
+      - name: Install & Test
+        run: |
+          npm install
+          npm run test:unit
           
-      - name: Codecov
-        uses: codecov/codecov-action@v2.1.0
-        
-      - name: Jest
-        run: jest
-        
       - name: Codecov
         uses: codecov/codecov-action@v2.1.0
         
