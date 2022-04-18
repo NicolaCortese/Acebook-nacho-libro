@@ -9,4 +9,6 @@ router.get("/new", UsersController.New);
 // called when submitting the new user form
 router.post("/", UsersController.Create);
 
+router.get("/profile", UsersController.Profile);
+
 module.exports = router;
