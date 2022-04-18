@@ -23,9 +23,14 @@ describe("Timeline", () => {
       "be.visible"
     );
 
-    // the post shows the author
+    // the post shows the author's username & profile picture
 
-    cy.get(".posts").should("contain", "batman");
+    cy.get(".posts").should(
+      "contain",
+      "batman",
+      "https://picsum.photos/200",
+      "be.visible"
+    );
 
     // submit a second post and check that it appears above the previous post
     cy.visit("/posts");
