@@ -27,12 +27,12 @@ jobs:
         uses: codecov/codecov-action@v2.1.0
         
       - name: Jest
-        run: npm run test:unit
+        run: jest
         
       - name: Codecov
         uses: codecov/codecov-action@v2.1.0
         
-      - name: Cypress run
+      - name: Cypress Run
         uses: cypress-io/github-action@v2
         with:
           start: npm run start:test
