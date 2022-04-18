@@ -3,6 +3,7 @@
   {{#each (reverse posts)}}
     <li class="post">
       Posted by:
+      <img src='{{this.author.profilePic}}' class="profile-pic">
       {{this.author.username}}<br />
       <img src="{{this.image_url}}" /><br />
       {{this.message}}<br />
