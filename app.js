@@ -101,5 +101,6 @@ handlebars.registerHelper("ifLiked", (postLikedBy, sessionUser) => {
   }
 });
 handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow())
+handlebars.registerHelper("equal", (one, two) => one == two)
 
 module.exports = app;

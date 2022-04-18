@@ -34,32 +34,31 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      console.log("post info:")
-      console.log(post.message)
 
-      res.render("posts/edit", { post: post });
+      res.render("posts/edit", { post: post[0] });
     });
   },
 
   Save: (req, res) => {
     const post_id = req.params.id;
-    Post.find({_id: post_id}, (err, post) => {
-      if (err) {
-        throw err;
+    const post = req.body;
+    Post.updateOne(
+      { _id: post_id },
+      { $set: { message: post.message, image_url: post.image } },
+      () => {
+        res.redirect("..");
       }
-
-      res.render("posts/edit", { post: post });
-    });
+    );
   },
 
   Delete: (req, res) => {
     const post_id = req.params.id
     console.log(post_id)
     Post.deleteOne({ _id: post_id }, () => {
-      res.redirect("/posts");
+      res.redirect("..");
     });
   },
-
+  
   Like: (req, res) => {
     const post_id = req.body.post_id;
     const user = req.session.user;
@@ -72,7 +71,6 @@ const PostsController = {
       }
     );
   },
-  
   Unlike: (req, res) => {
     const post_id = req.body.post_id;
     const user = req.session.user;
