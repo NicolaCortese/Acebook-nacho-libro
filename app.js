@@ -93,6 +93,13 @@ app.use((err, req, res) => {
 
 // custom handlebar helpers
 handlebars.registerHelper("reverse", (array) => array.reverse());
+handlebars.registerHelper("ifLiked", (postLikedBy, sessionUser) => {
+  if (postLikedBy.includes(sessionUser)) {
+    return "Unlike";
+  } else {
+    return "Like";
+  }
+});
 handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow())
 
 module.exports = app;
