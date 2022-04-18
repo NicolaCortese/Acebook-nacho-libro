@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
+    <div id="main-container">
     <div id="nav-bar"><ul id="nav-ul">
         {{#if session.username}}
           <li class="nav-li" id="li-timeline"><a href="/posts">Timeline</a></li>
@@ -29,7 +30,10 @@
         {{/if}}
       </ul>
     </div>
+    <div id="content">
     {{{body}}}
+    </div>
+    </div>
     <script src="/javascripts/axios.min.js"></script>
     <script src="/javascripts/moment.min.js"></script>
     <script src="/javascripts/likes.js"></script>

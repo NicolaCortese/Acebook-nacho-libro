@@ -1,4 +1,5 @@
 body {
+  background-color: #f2f2f2;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -7,17 +8,60 @@ a {
   color: #00B7FF;
 }
 
+/* headers */
+
+h1 {
+  text-align: center;
+}
+
+/* main */
+
+div#main-container {
+  max-width: 600px;
+  margin: auto;
+  background-color: white;
+}
+
+div#content {
+  background-color: #00B7FF;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+/* navigation bar */
+
+ul#nav-ul {
+  list-style-type: none;
+  overflow: hidden;
+}
+
+li.nav-li {
+  float: left;
+  text-transform: capitalize;
+}
+
+li.nav-li a, .link-button {
+  display: block;
+  color: black;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  text-decoration: none;
+  background-color: #fff;
+  transition: background-color 0.3s ease-out, color 0.5s ease-out;
+}
+
+li.nav-li a:hover, .link-button:hover {
+  background-color: #f1f1f1;
+}
+
 .link-button {
-  background: none;
   border: none;
   outline: none;
-  color: #00B7FF;
   text-decoration: none;
   cursor: pointer;
+  display: block;
 }
 .link-button:focus {
   outline: none;
 }
-.link-button:active {
-  color:#00B7FF;
-} 
