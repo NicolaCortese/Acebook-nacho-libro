@@ -1,0 +1,9 @@
+<h1>Edit</h1>
+{{post}}
+{{post._id}}
+{{post.message}}
+<form action="/posts/{{post._id}}/save" method="POST">
+<input type="text" value="{{post.message}}" id="edit-msg">
+<input type="text" value="{{post.img_url}}" id="edit-img">
+<input type="submit" value="Submit" id="edit-submit">
+</form>
