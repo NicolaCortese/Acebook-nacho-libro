@@ -2,7 +2,7 @@
 
 <ul class="posts">
   {{#each (reverse posts)}}
-    <li class="post">
+    <li class="post" id="post-{{this._id}}">
       Posted by:
       <img src="{{this.author.profilePic}}" class="profile-pic" />
       {{this.author.username}}<br />
