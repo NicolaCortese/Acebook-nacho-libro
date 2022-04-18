@@ -38,8 +38,9 @@ describe("Post model", () => {
     });
   });
 
-  it("can upload and see the image",  (done) => {
-    let post = new Post({ message: "image test", image_url: "https://picsum.photos/536/354" });
+  it("shows a username of the post author", (done) => {
+    const user = { username: "cat" };
+    let post = new Post({ message: "some other message", author: user });
 
     post.save((err) => {
       expect(err).toBeNull();
@@ -47,7 +48,34 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
 
+        expect(posts[0]).toMatchObject({ message: "some other message", author: { username: "cat"} });
+        done();
+      });
+    });
+  });
+
+  it("can upload and see the image",  (done) => {
+    let post = new Post({ message: "image test", image_url: "https://picsum.photos/536/354" });
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
         expect(posts[0]).toMatchObject({ message: "image test", image_url: "https://picsum.photos/536/354" });
+        done();
+      })
+    })
+  })
+
+  it("can like a post", (done) => {
+    let post = new Post({ message: "message to be liked", likes: "someone" });
+    post.save((err) => {
+      expect(err).toBeNull();
+      
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts[0].message).toEqual("message to be liked");
+        expect(posts[0].likes).toContain("someone");
         done();
       });
     });

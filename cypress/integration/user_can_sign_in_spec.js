@@ -2,7 +2,9 @@ describe("Authentication", () => {
   it("A user signs in and is redirected to /posts", () => {
     // sign up
     cy.visit("/users/new");
+    cy.get("#username").type("robin");
     cy.get("#email").type("someone@example.com");
+    cy.get('#username').type('someone')
     cy.get("#password").type("password");
     cy.get("#submit").click();
 

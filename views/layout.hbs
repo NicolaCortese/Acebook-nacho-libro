@@ -4,20 +4,33 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <div id="nav-bar">
-      <ul id="nav-ul">
-        <li class="nav-li"><a href="/posts">Timeline</a></li>
-        <li class="nav-li"><a href="/posts/new">Post</a></li>
-        <li class="nav-li"><a href="/users/profile">Profile</a></li>
-        <form action="/sessions?_method=DELETE" method="POST">
-          <li class="nav-li" id="logout">
-            <input type="submit" value="logout" id="link-button"/>
-          </li>
-        </form>
-        <li class="nav-li"><a href="/sessions/new">Sign in</a></li>
-        <li class="nav-li"><a href="/users/new">Sign up</a></li>
+    <div id="nav-bar"><ul id="nav-ul">
+        {{#if session.username}}
+          <li class="nav-li" id="li-timeline"><a href="/posts">Timeline</a></li>
+          <li class="nav-li" id="li-post"><a href="/posts/new">Post</a></li>
+          <li class="nav-li" id="li-profile"><a
+              href="/users/profile"
+            >{{session.username}}'s profile</a></li>
+          <li class="nav-li" id="li-sign-out">
+            <form action="/sessions?_method=DELETE" method="POST">
+              <input
+                type="submit"
+                class="link-button"
+                id="btn-sign-out"
+                value="Sign out"
+              />
+            </form></li>
+        {{else}}
+          <li class="nav-li" id="li-sign-in"><a href="/sessions/new">Sign in</a></li>
+          <li class="nav-li" id="li-sign-up"><a
+              href="/users/new"
+              id="signup"
+            >Sign up</a></li>
+        {{/if}}
       </ul>
     </div>
     {{{body}}}
+    <script src="/javascripts/axios.min.js"></script>
+    <script type="text/javascript" src="/javascripts/likes.js"></script>
   </body>
 </html>
