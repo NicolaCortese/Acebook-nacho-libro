@@ -6,17 +6,23 @@
       <div class="post-header">
       <img src="{{this.author.profilePic}}" class="profile-pic" />
       <span class="user-name">{{this.author.username}}</span><br>
-      <span class="time-ago">{{timeAgo this.timestamp}}</span><br /></div>
+      <span class="time-ago">{{timeAgo this.timestamp}}</span><br />
+      {{#if (equal this.author.username ../session.username)}}
+        <a href="/posts/{{this._id}}/delete" id="del-link">delete</a>
+        <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
+      {{/if}}
+      </div>
       <img class="post-image" src="{{this.image_url}}" />
       <p class="post-message">{{this.message}}</p>
       <button class="like-button" id="{{this._id}}">
         {{ifLiked this.likes ../session.username}}
       </button>
-      <button class="accordion">
+      <button class="accordion"><p class="like-msg">
+        You, him & 
       <span
         class="likes-count"
         id="likes-count-{{this._id}}"
-      >{{this.likes.length}}</span>
+      >{{this.likes.length}}</span> others have liked this</p>
       </button>
         <div class="panel">
           {{#each this.likes}}
@@ -24,9 +30,5 @@
           {{/each}}
         </div>
     </li>
-    {{#if (equal this.author.username ../session.username)}}
-    <a href="/posts/{{this._id}}/delete" id="del-link">delete</a>
-        <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
-    {{/if}}
   {{/each}}
 </ul>
