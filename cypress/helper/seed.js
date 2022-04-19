@@ -16,7 +16,7 @@ const seedDB = async () => {
     email: "batman@example.com",
     password: "password",
     username: "batman",
-    profilePic: "https://picsum.photos/200"
+    profilePic: "https://picsum.photos/200",
   });
 
   // Hash the password
@@ -29,7 +29,7 @@ const seedDB = async () => {
     email: "joker@example.com",
     password: "password",
     username: "joker",
-    profilePic: "https://picsum.photos/200"
+    profilePic: "https://picsum.photos/200",
   });
 
   // Hash the password
@@ -42,6 +42,7 @@ const seedDB = async () => {
       "It's not who you are underneath, it's what you do that defines you.",
     image_url: "https://picsum.photos/536/354",
     author: batman,
+    likes: ["Robin", "Joker", "Penguin"],
   });
 
   await post1.save();
@@ -51,6 +52,7 @@ const seedDB = async () => {
       "Sometimes the truth isn’t good enough, sometimes people deserve more.",
     image_url: "https://picsum.photos/536/354",
     author: batman,
+    likes: ["Robin", "Joker", "Penguin"],
   });
 
   await post2.save();
@@ -59,6 +61,7 @@ const seedDB = async () => {
     message: "Why so serious?",
     image_url: "https://picsum.photos/536/354",
     author: joker,
+    likes: ["Robin", "Batman", "Penguin"],
   });
 
   await post3.save();

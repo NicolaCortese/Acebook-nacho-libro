@@ -9,7 +9,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
-const moment = require('./public/javascripts/moment.min')
+const moment = require("./public/javascripts/moment.min");
 const { handlebars } = require("hbs");
 
 const app = express();
@@ -36,6 +36,14 @@ app.use(
     },
   })
 );
+
+// Flash Notice Middleware
+app.use((req, res, next) => {
+  res.locals.message = req.session.message;
+  // Delete on reload
+  delete req.session.message;
+  next();
+});
 
 // passing the user in session to a local session variable on the response
 app.use((req, res, next) => {
@@ -100,6 +108,7 @@ handlebars.registerHelper("ifLiked", (postLikedBy, sessionUser) => {
     return "Like";
   }
 });
-handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow())
+handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow());
+handlebars.registerHelper("equal", (one, two) => one === two);
 
 module.exports = app;
