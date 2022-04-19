@@ -4,7 +4,6 @@
   {{#each (reverse posts)}}
     <li class="post" id="post-{{this._id}}">
       <div class="post-header">
-      Posted by:
       <img src="{{this.author.profilePic}}" class="profile-pic" />
       <span class="user-name">{{this.author.username}}</span><br>
       <span class="time-ago">{{timeAgo this.timestamp}}</span><br /></div>
@@ -13,12 +12,12 @@
       <button class="like-button" id="{{this._id}}">
         {{ifLiked this.likes ../session.username}}
       </button>
+      <button class="accordion">
       <span
         class="likes-count"
         id="likes-count-{{this._id}}"
-      >{{this.likes.length}}</span><br />
-
-      <button class="accordion">Liked by:</button>
+      >{{this.likes.length}}</span>
+      </button>
         <div class="panel">
           {{#each this.likes}}
             <p>{{this}}</p>
