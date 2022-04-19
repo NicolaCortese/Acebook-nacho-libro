@@ -9,7 +9,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
-const moment = require('./public/javascripts/moment.min')
+const moment = require("./public/javascripts/moment.min");
 const { handlebars } = require("hbs");
 
 const app = express();
@@ -100,7 +100,7 @@ handlebars.registerHelper("ifLiked", (postLikedBy, sessionUser) => {
     return "Like";
   }
 });
-handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow())
-handlebars.registerHelper("equal", (one, two) => one === two)
+handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow());
+handlebars.registerHelper("equal", (one, two) => one === two);
 
 module.exports = app;
