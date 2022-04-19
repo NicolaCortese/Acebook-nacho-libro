@@ -2,7 +2,7 @@
 
 <ul class="posts">
   {{#each (reverse posts)}}
-    <li class="post">
+    <li class="post" id="post-{{this._id}}">
       Posted by:
       <img src="{{this.author.profilePic}}" class="profile-pic" />
       {{this.author.username}}<br />
@@ -17,10 +17,13 @@
         class="likes-count"
         id="likes-count-{{this._id}}"
       >{{this.likes.length}}</span><br />
-      Liked by:<br />
-      {{#each this.likes}}
-        <span class="liked-by">{{this}}</span><br />
-      {{/each}}
+
+      <button class="accordion">Liked by:</button>
+        <div class="panel">
+          {{#each this.likes}}
+            <p>{{this}}</p>
+          {{/each}}
+        </div>
     </li>
     {{#if (equal this.author.username ../session.username)}}
     <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
