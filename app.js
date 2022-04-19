@@ -37,6 +37,14 @@ app.use(
   })
 );
 
+// Flash Notice Middleware
+app.use((req, res, next) => {
+  res.locals.message = req.session.message;
+  // Delete on reload
+  delete req.session.message;
+  next();
+});
+
 // passing the user in session to a local session variable on the response
 app.use((req, res, next) => {
   res.locals.session = req.session.user;
