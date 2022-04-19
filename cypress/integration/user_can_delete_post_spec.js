@@ -16,6 +16,9 @@ describe("Delete", () => {
     // delete the post
     cy.get("#del-link").first().click();
     cy.get(".posts").should("not.contain", "Batman post");
+
+    // get the confirmation alert
+    cy.get("#content").should("contain", "The post has been successfully deleted!")
   });
 
   it("can only delete if the user is an author of the post", () => {

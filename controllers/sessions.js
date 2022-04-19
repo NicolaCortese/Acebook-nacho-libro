@@ -44,6 +44,10 @@ const SessionsController = {
     if (req.session.user && req.cookies.user_sid) {
       res.clearCookie("user_sid");
     }
+    req.session.message = {
+      type: "success",
+      message: "Successfully logged out!",
+    };
     res.redirect("/sessions/new");
   },
 };

@@ -16,16 +16,19 @@ describe("Timeline", () => {
       .type("https://picsum.photos/536/354");
     cy.get("#new-post-form").submit();
 
+    // get a confirmation alert
+
+    cy.get("#content").should("contain", "The post has been successfully created!")
+
+    // confirm the contents of the post
+
     cy.get(".posts").should(
       "contain",
       "Hello, world!",
+      "a few seconds ago",
       "https://picsum.photos/536/354",
       "be.visible"
     );
-    
-    // the post shows the time since
-
-    cy.get(".posts").should("contain", "a few seconds ago");
 
     // the post shows the author's username & profile picture
 
