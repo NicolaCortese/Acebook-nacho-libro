@@ -38,12 +38,21 @@
           {{/if}}
         </ul>
       </div>
-      <div id="content">
-        {{{body}}}
+    <div id="content">
+    {{! Flash Notice Message }}
+    {{#if message}}
+      <div style="text-align: center;" class="alert alert-{{message.type}}">
+        <span class="closebtn">&times;</span> 
+        <strong>{{message.message}}</strong>
       </div>
+    {{/if}}
+
+    {{{body}}}
+    </div>
     </div>
     <script src="/javascripts/axios.min.js"></script>
     <script src="/javascripts/moment.min.js"></script>
     <script src="/javascripts/likes.js"></script>
+    <script src="/javascripts/alerts.js"></script>
   </body>
 </html>
