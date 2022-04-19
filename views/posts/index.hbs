@@ -3,16 +3,15 @@
 <ul class="posts">
   {{#each (reverse posts)}}
     <li class="post">
-      Posted by:
+      <div class="post-header">
       <img src="{{this.author.profilePic}}" class="profile-pic" />
-      {{this.author.username}}<br />
-      <img src="{{this.image_url}}" /><br />
-      {{timeAgo this.timestamp}}<br />
-      {{this.message}}<br />
+      <span class="user-name">{{this.author.username}}</span><br>
+      <span class="time-ago">{{timeAgo this.timestamp}}</span><br /></div>
+      <img class="post-image" src="{{this.image_url}}" />
+      <p class="post-message">{{this.message}}</p>
       <button class="like-button" id="{{this._id}}">
         {{ifLiked this.likes ../session.username}}
-      </button><br />
-      Number of likes:
+      </button>
       <span
         class="likes-count"
         id="likes-count-{{this._id}}"
@@ -23,8 +22,8 @@
       {{/each}}
     </li>
     {{#if (equal this.author.username ../session.username)}}
-    <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
     <a href="/posts/{{this._id}}/delete" id="del-link">delete</a>
+        <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
     {{/if}}
   {{/each}}
 </ul>
