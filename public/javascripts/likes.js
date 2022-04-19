@@ -3,7 +3,7 @@ likeButton.forEach((element) => {
   element.addEventListener("click", () => {
     onLikeButtonClick(element);
     updatePostStats[element.textContent.trim()](element.id);
-    updateLikedByList[element.textContent.trim()](element.id);
+    // updateLikedByList[element.textContent.trim()](element.id);
     toggleButtonText[element.textContent.trim()](element);
   });
 });
@@ -42,20 +42,20 @@ let toggleButtonText = {
   },
 };
 
-let updateLikedByList = {
-  Like: (postId) => {
-    console.log("check this has been called");
-    const post = document.querySelector("#post-" + postId);
-    const likedBy = document.createElement("span");
-    likedBy.innerText = "Batman placeholder";
-    post.append(likedBy);
-  },
-  Unlike: (button) => {
-    // find the liked-by list
-    // remove the user from the list
-    console.log("check this has been called");
-    const post = document.querySelector("#post-" + postId);
-    const likedBy = document.createElement("span");
-    likedBy.innerText = "Batman placeholder";
-  },
-};
+// let updateLikedByList = {
+//   Like: (postId) => {
+//     console.log("check this has been called");
+//     const post = document.querySelector("#post-" + postId);
+//     const likedBy = document.createElement("span");
+//     likedBy.innerText = "Batman placeholder";
+//     post.append(likedBy);
+//   },
+//   Unlike: (button) => {
+//     // find the liked-by list
+//     // remove the user from the list
+//     console.log("check this has been called");
+//     const post = document.querySelector("#post-" + postId);
+//     const likedBy = document.createElement("span");
+//     likedBy.innerText = "Batman placeholder";
+//   },
+// };
