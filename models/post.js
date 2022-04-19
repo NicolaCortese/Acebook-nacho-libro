@@ -8,9 +8,7 @@ const PostSchema = new mongoose.Schema({
   likes: Array,
   comments: [
     {
-      author: String,
-      message: String,
-      timestamp: Date,
+      type:mongoose.Schema.Types.ObjectId, ref:'Comment'
     },
   ],
 });

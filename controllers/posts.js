@@ -83,6 +83,19 @@ const PostsController = {
       }
     );
   },
+  Comment: (req, res) => {
+    const post_id = req.body.post_id;
+    const user = req.session.user;
+    const comment = new Comment({author: user.username, message: user.message})
+
+    Post.updateOne(
+      {_id: post_id },
+      { $push: { comment }},
+      () => {
+        res.send("Comment has been made successfully");
+      }
+    );
+  }
 };
 
 module.exports = PostsController;

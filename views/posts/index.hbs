@@ -21,6 +21,12 @@
       {{#each this.likes}}
         <span class="liked-by">{{this}}</span><br />
       {{/each}}
+      <form id="comment" method="post">
+        <label for="comment">Comment: </label>
+        <textarea id="comment-text" type="text" name="comment" value="Comments here"></textarea>
+        <input type="submit" value="Submit" id="{{this._id}}">
+      </form>
+       
     </li>
     {{#if (equal this.author.username ../session.username)}}
     <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
