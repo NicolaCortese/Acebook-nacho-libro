@@ -1,14 +1,17 @@
 <h1>{{session.username}}'s timeline</h1>
+
 <ul class="posts">
   {{#each (reverse posts)}}
     <li class="post">
       Posted by:
-      <img src='{{this.author.profilePic}}' class="profile-pic">
+      <img src="{{this.author.profilePic}}" class="profile-pic" />
       {{this.author.username}}<br />
       <img src="{{this.image_url}}" /><br />
       {{timeAgo this.timestamp}}<br />
       {{this.message}}<br />
-      <button class="like-button" id="{{this._id}}">Like</button><br />
+      <button class="like-button" id="{{this._id}}">
+        {{ifLiked this.likes ../session.username}}
+      </button><br />
       Number of likes:
       <span
         class="likes-count"
@@ -16,7 +19,7 @@
       >{{this.likes.length}}</span><br />
       Liked by:<br />
       {{#each this.likes}}
-        <span class="liked-by">{{this.username}}</span><br />
+        <span class="liked-by">{{this}}</span><br />
       {{/each}}
     </li>
 

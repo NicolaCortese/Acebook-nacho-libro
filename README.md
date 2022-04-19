@@ -93,3 +93,6 @@ Some people occasionally experience MongoDB connection errors when running the t
 - Try swapping `127.0.0.1`, everywhere that it appears in your codebase, with `127.0.0.1`. It might be surprising but this does sometimes make a difference.
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+
+## Credits
+Images: [heart icon](https://www.flaticon.com/free-icon/heart_1216811?related_id=1216649&origin=search), [logo](https://www.flaticon.com/free-icon/nachos_390248?term=nachos&page=1&position=56&page=1&position=56&related_id=390248&origin=search)

@@ -1,37 +1,43 @@
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
+    // sign in as batman
     cy.visit("/sessions/new");
     cy.get("#email").type("batman@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
-    // // sign up
-    // cy.visit("/users/new");
-    // cy.get("#email").type("someone@example.com");
-    // cy.get("#password").type("password");
-    // cy.get("#submit").click();
-    // // sign in
-    // cy.visit("/sessions/new");
-    // cy.get("#email").type("someone@example.com");
-    // cy.get("#password").type("password");
-    // cy.get("#submit").click();
-    // // submit a post
-    // cy.visit("/posts");
-    // cy.contains("New post").click();
-    // cy.get("#new-post-form").find('[type="tex"]t').type("Hello, world!");
-    // cy.get("#new-post-form").submit();
-    // cy.get(".posts").should("contain", "Hello, world!");
-    // // go to profile page and show posts by user
-    // cy.visit("/profile");
-    // cy.contains("New post").click();
-    // cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
-    // cy.get("#new-post-form").submit();
-    // cy.get(".posts").should("contain", "Hello, world!");
-  });
-
-  it("can submit posts, when signed in, and view them", () => {
+    // submit a post
+    cy.visit("/posts");
+    cy.contains("New post").click();
+    cy.get("#new-post-form").find('#message').type("Batman post");
+    cy.get("#new-post-form").submit();
+    // check if batman's posts show on a profile page
+    cy.visit("/users/profile");
+    cy.get(".posts").should(
+      "contain",
+      "Batman post",
+    );
+    // sign out
+    cy.get("#btn-sign-out").click();
+    // sign in as joker
     cy.visit("/sessions/new");
     cy.get("#email").type("joker@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
+     // submit a post
+     cy.visit("/posts");
+     cy.contains("New post").click();
+     cy.get("#new-post-form").find('#message').type("Joker post");
+     cy.get("#new-post-form").submit();
+    // check if joker's posts show on a profile page
+    cy.visit("/users/profile");
+    cy.get(".posts").should(
+      "contain",
+      "Joker post",
+    );
+    // check that batman's post do not show on a profile page
+    cy.get(".posts").should(
+      "not.contain",
+      "Batman post",
+    );
   });
 });
