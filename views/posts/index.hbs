@@ -7,26 +7,42 @@
       <img src="{{this.author.profilePic}}" class="profile-pic" />
       {{this.author.username}}<br />
       <img src="{{this.image_url}}" /><br />
+
+
       {{timeAgo this.timestamp}}<br />
       {{this.message}}<br />
+
+
       <button class="like-button" id="{{this._id}}">
         {{ifLiked this.likes ../session.username}}
       </button><br />
+
+
       Number of likes:
       <span
         class="likes-count"
         id="likes-count-{{this._id}}"
       >{{this.likes.length}}</span><br />
+
+      
       Liked by:<br />
       {{#each this.likes}}
         <span class="liked-by">{{this}}</span><br />
       {{/each}}
+    
+      Commented by:<br />
+      {{#each this.comments}}
+        <span class="commented-by">{{this}}</span><br />
+      {{/each}}
+
+
       <form id="comment" method="post">
-        <label for="comment">Comment: </label>
-        <textarea id="comment-text" type="text" name="comment" value="Comments here"></textarea>
-        <input type="submit" value="Submit" id="{{this._id}}">
+        <label for="comment">Comment: {{this}} </label>
+        <textarea id="comment-text" type="text" name="message" placeholder="comment here"></textarea>
+        <input type="submit" value="Comment" class="comment-button" id="{{this._id}}">
       </form>
-       
+
+
     </li>
     {{#if (equal this.author.username ../session.username)}}
     <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
