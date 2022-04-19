@@ -31,11 +31,11 @@ describe("Likes", () => {
     cy.get("#new-post-form").submit();
 
     // likes the post
-    cy.get(".like-button").first().click();
+    cy.get(".like-button").first().should("contain", "Like").click();
     cy.get(".likes-count").should("contain", "1");
 
     //unlike the post
-    cy.get(".like-button").first().should("contain", "Unlike").click();
+    cy.get(".unlike-button").first().should("contain", "Unlike").click();
     cy.get(".likes-count").should("contain", "0");
   });
 });

@@ -53,9 +53,11 @@ let toggleButtonText = {
   Like: (button) => {
     console.log("button toggled");
     button.textContent = "Unlike";
+    button.className = "unlike-button";
   },
   Unlike: (button) => {
     button.textContent = "Like";
+    button.className = "like-button";
   },
 };
 
