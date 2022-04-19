@@ -1,6 +1,7 @@
 const createError = require("http-errors");
 const express = require("express");
 const session = require("express-session");
+// const flash = require("connect-flash");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -36,10 +37,18 @@ app.use(
   })
 );
 
+// Flash Notice Middleware
+app.use((req, res, next) => {
+  res.locals.message = req.session.message;
+  // Delete on reload
+  delete req.session.message;
+  next();
+});
+
 // passing the user in session to a local session variable on the response
 app.use((req, res, next) => {
   res.locals.session = req.session.user;
-  console.log(res.locals.session);
+  console.log(res.locals.sessio);
   next();
 });
 
