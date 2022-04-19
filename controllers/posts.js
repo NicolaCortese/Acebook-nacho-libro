@@ -28,6 +28,37 @@ const PostsController = {
     });
   },
 
+  Edit: (req, res) => {
+    const post_id = req.params.id;
+    Post.find({_id: post_id}, (err, post) => {
+      if (err) {
+        throw err;
+      }
+
+      res.render("posts/edit", { post: post[0] });
+    });
+  },
+
+  Save: (req, res) => {
+    const post_id = req.params.id;
+    const post = req.body;
+    Post.updateOne(
+      { _id: post_id },
+      { $set: { message: post.message, image_url: post.image } },
+      () => {
+        res.redirect("..");
+      }
+    );
+  },
+
+  Delete: (req, res) => {
+    const post_id = req.params.id
+    console.log(post_id)
+    Post.deleteOne({ _id: post_id }, () => {
+      res.redirect("..");
+    });
+  },
+  
   Like: (req, res) => {
     const post_id = req.body.post_id;
     const user = req.session.user;
@@ -40,7 +71,6 @@ const PostsController = {
       }
     );
   },
-
   Unlike: (req, res) => {
     const post_id = req.body.post_id;
     const user = req.session.user;
