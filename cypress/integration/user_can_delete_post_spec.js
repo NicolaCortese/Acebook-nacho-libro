@@ -8,7 +8,7 @@ describe("Delete", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
     cy.get("#new-post-form").find("#message").type("Batman post");
     cy.get("#new-post-form").submit();
     cy.get(".posts").should("contain", "Batman post");

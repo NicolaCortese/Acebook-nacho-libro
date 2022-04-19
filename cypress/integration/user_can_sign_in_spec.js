@@ -8,6 +8,6 @@ describe("Authentication", () => {
 
     //redirected to timeline
     cy.url().should("include", "/posts");
-    cy.contains("a", "New post");
+    cy.contains("a", "Post");
   });
 });

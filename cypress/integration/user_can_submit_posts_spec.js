@@ -8,7 +8,7 @@ describe("Timeline", () => {
 
     // submit a post with an image
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
 
     cy.get("#new-post-form").find("#message").type("Hello, world!");
     cy.get("#new-post-form")
@@ -38,7 +38,7 @@ describe("Timeline", () => {
 
     // submit a second post and check that it appears above the previous post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
 
     cy.get("#new-post-form").find("#message").type("I'm the latest post");
     cy.get("#new-post-form")
