@@ -8,6 +8,7 @@
   <body>
     <h1> Please fill in the form to create a new account</h1>
 
+<<<<<<< HEAD
     <form id="new-user-form" action="/users" method="post">
       <label for="username">Username: </label>
       <input
@@ -31,3 +32,22 @@
     </form>
   </body>
 </html>
+=======
+<form id="new-user-form" action="/users" method="post">
+  <label for="username">Username: </label>
+  <input id="username" type="text" name="username" value="" required />
+  <label for="email">Email: </label>
+  <input id="email" type="email" name="email" value="" required />
+  <label for="password">Password: </label>
+  <input id="password" type="password" name="password" value="" required />
+  <label for="profilePic">Profile picture: </label>
+  <input
+    id="profilePic"
+    type="text"
+    name="profilePic"
+    value="https://picsum.photos/100/100"
+  />
+  <input id="submit" type="submit" value="Submit" />
+
+</form>
+>>>>>>> main

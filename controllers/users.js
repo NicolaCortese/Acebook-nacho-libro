@@ -1,9 +1,21 @@
+<<<<<<< HEAD
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
 const UsersController = {
   New: (req, res) => {
     res.render("users/new", {});
+=======
+const bcrypt = require('bcrypt');
+const User = require('../models/user');
+const Post = require('../models/post')
+
+
+const UsersController = {
+  New: (req, res) => {
+    console.log(req.session.user)
+    res.render('users/new', {});
+>>>>>>> main
   },
 
   Create: async (req, res) => {
@@ -58,6 +70,13 @@ const UsersController = {
       }
     }
   },
+  Profile: (req, res) => {
+    const user = req.session.user.username
+    Post.find({'author.username': user}, (err, posts) => {   
+    res.render("users/profile", {posts: posts});
+  }) 
+ },
+
 };
 
 module.exports = UsersController;

@@ -1,7 +1,7 @@
-<h1>{{session.username}}'s timeline</h1>
+<h1> {{session.username}}'s profile page</h1>
 
 <ul class="posts">
-  {{#each (reverse posts)}}
+    {{#each (reverse posts)}}
     <li class="post">
       Posted by:
       <img src="{{this.author.profilePic}}" class="profile-pic" />
@@ -23,10 +23,8 @@
       {{/each}}
     </li>
     {{#if (equal this.author.username ../session.username)}}
-    <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
-    <a href="/posts/{{this._id}}/delete" id="del-link">delete</a>
+    <a href="/posts/{{this._id}}/edit">edit</a>
+    <a href="/posts/{{this._id}}/delete">delete</a>
     {{/if}}
   {{/each}}
 </ul>
-
-<a class="new-post-link" href="/posts/new">New post</a>

@@ -10,6 +10,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const moment = require('./public/javascripts/moment.min')
 const { handlebars } = require("hbs");
 
 const app = express();
@@ -48,7 +49,7 @@ app.use((req, res, next) => {
 // passing the user in session to a local session variable on the response
 app.use((req, res, next) => {
   res.locals.session = req.session.user;
-  console.log(res.locals.sessio);
+  // console.log(res.locals.session);
   next();
 });
 
@@ -101,6 +102,14 @@ app.use((err, req, res) => {
 
 // custom handlebar helpers
 handlebars.registerHelper("reverse", (array) => array.reverse());
-// handlebars.registerHelper("ifSignedIn", () => if{}  );
+handlebars.registerHelper("ifLiked", (postLikedBy, sessionUser) => {
+  if (postLikedBy.includes(sessionUser)) {
+    return "Unlike";
+  } else {
+    return "Like";
+  }
+});
+handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow())
+handlebars.registerHelper("equal", (one, two) => one === two)
 
 module.exports = app;
