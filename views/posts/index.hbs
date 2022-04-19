@@ -22,7 +22,10 @@
         <span class="liked-by">{{this}}</span><br />
       {{/each}}
     </li>
-
+    {{#if (equal this.author.username ../session.username)}}
+    <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
+    <a href="/posts/{{this._id}}/delete" id="del-link">delete</a>
+    {{/if}}
   {{/each}}
 </ul>
 

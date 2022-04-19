@@ -1,4 +1,5 @@
 # Acebook
+[![Nachos](https://github.com/NicolaCortese/Acebook-nacho-libro/actions/workflows/test.yml/badge.svg)](https://github.com/NicolaCortese/Acebook-nacho-libro/actions/workflows/test.yml)
 
 This is a Node.js template for the Acebook engineering project.
 
