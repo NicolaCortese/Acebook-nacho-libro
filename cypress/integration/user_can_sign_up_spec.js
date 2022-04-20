@@ -1,5 +1,5 @@
 describe("Registration", () => {
-  it("A user signs up and is redirected to sign in", () => {
+  it("A user signs up and is redirected to the settings page", () => {
     // sign up from the homepage
     cy.visit("/");
     cy.get("#signup").click();
@@ -8,13 +8,13 @@ describe("Registration", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    // redirected to the sign in page
-    cy.url().should("include", "/sessions/new");
+    // redirected to the settings page
+    cy.url().should("include", "/users/settings");
 
     // get a confirmation alert
     cy.get("#content").should(
       "contain",
-      "You are now registered! Please sign in."
+      "You are now registered! Please edit your profile."
     );
   });
 

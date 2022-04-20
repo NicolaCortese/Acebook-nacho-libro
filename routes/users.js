@@ -11,4 +11,9 @@ router.post("/", UsersController.Create);
 
 router.get("/profile", UsersController.Profile);
 
+// User Settings
+router.get("/settings", UsersController.Settings);
+
+router.post("/update", UsersController.Update);
+
 module.exports = router;

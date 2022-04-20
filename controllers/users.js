@@ -49,14 +49,14 @@ const UsersController = {
       } else {
         req.session.message = {
           type: "success",
-          message: "You are now registered! Please sign in.",
+          message: "You are now registered! Please edit your profile.",
         };
         console.log(`User information: ${user}`);
         user.save((err) => {
           if (err) {
             throw err;
           }
-          res.status(201).redirect("/sessions/new");
+          res.status(201).redirect("/users/settings");
         });
       }
     }
@@ -66,6 +66,15 @@ const UsersController = {
     Post.find({ "author.username": user }, (err, posts) => {
       res.render("users/profile", { posts: posts });
     });
+  },
+
+  Settings: (req, res) => {
+    console.log("User settings running...");
+    res.render("users/settings", {});
+  },
+
+  Update: (req, res) => {
+    console.log("Update is running...");
   },
 };
 
