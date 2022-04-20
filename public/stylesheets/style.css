@@ -195,20 +195,20 @@ a#signup {
 }
 /* like */
 
-button.like-button {
+button.Like-button {
   background: url("/images/unheart.png") 0 0 / 17px 17px no-repeat;
   width: 17px;
   height: 17px;
   border: none;
   outline: none;
-  font-size: 0;
+  font-size: 0px;
   cursor: pointer;
   margin-left: 10px;
   transition: 0.4s;
   position: absolute;
 }
 
-button.unlike-button {
+button.Unlike-button {
   background: url("/images/heart.png") 0 0 / 17px 17px no-repeat;
   width: 17px;
   height: 17px;
