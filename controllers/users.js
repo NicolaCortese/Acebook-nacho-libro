@@ -56,7 +56,7 @@ const UsersController = {
           if (err) {
             throw err;
           }
-          res.status(201).redirect("/users/settings");
+          res.status(201).redirect(`/users/${user.username}/settings`);
         });
       }
     }
@@ -70,11 +70,36 @@ const UsersController = {
 
   Settings: (req, res) => {
     console.log("User settings running...");
-    res.render("users/settings", {});
+    const username = req.params.username;
+
+    res.render("users/settings", { username: username });
   },
 
   Update: (req, res) => {
-    console.log("Update is running...");
+    const username = req.params.username;
+    const userInfo = req.body;
+    console.log(userInfo);
+    User.updateOne(
+      { username: username },
+      {
+        $set: {
+          profilePic: userInfo.profilePic,
+          coverPhoto: userInfo.coverPhoto,
+          birthday: userInfo.birthday,
+          livesIn: userInfo.livesIn,
+          worksAt: userInfo.worksAt,
+          hobbies: userInfo.hobbies,
+        },
+      },
+      () => {
+        req.session.message = {
+          type: "success",
+          message: "Thanks for adding the info! Please sign in.",
+        };
+        console.log("Update is running...");
+        res.redirect("/sessions/new");
+      }
+    );
   },
 };
 

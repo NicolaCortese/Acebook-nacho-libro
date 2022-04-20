@@ -16,6 +16,37 @@ describe("Registration", () => {
       "contain",
       "You are now registered! Please edit your profile."
     );
+    
+    //fills in form
+    cy.get("#coverPhoto").type("https://picsum.photos/100/100");
+    cy.get("#birthday").type("01/01/2000");
+    cy.get("#livesIn").type("Maracaibo");
+    cy.get("#workAt").type("NASA");
+    cy.get("#hobbies").type("Sailing, Bowling and Eating");
+    cy.get("#submit").click()
+    
+    //redirect to sign in
+    cy.url().should("include", "/sessions/new");
+    cy.get("#content").should(
+      "contain",
+      "Thanks for adding the info! Please sign in."
+      );
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click()
+    
+    //redirect to posts
+    cy.url().should("include", "/posts");
+    cy.get("#li-profile").click();
+    
+    //redirects to profile page
+    cy.url().should("include", "/users/profile");
+    cy.get("#coverPhoto").should("contain", "https://picsum.photos/100/100", "be.visible");
+    cy.get("#birthday").should("contain", "01/01/2000");
+    cy.get("#livesIn").should("contain", "Maracaibo");
+    cy.get("#workAt").should("contain", "NASA");
+    cy.get("#hobbies").should("contain", "Sailing, Bowling and Eating");
+
   });
 
   it("will not sign up if the email already exists", () => {
