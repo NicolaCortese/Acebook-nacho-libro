@@ -8,7 +8,7 @@ describe("Timeline", () => {
 
     // submit a post with an image
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
 
     cy.get("#new-post-form").find("#message").type("Hello, world!");
     cy.get("#new-post-form")
@@ -16,16 +16,19 @@ describe("Timeline", () => {
       .type("https://picsum.photos/536/354");
     cy.get("#new-post-form").submit();
 
+    // get a confirmation alert
+
+    cy.get("#content").should("contain", "The post has been successfully created!")
+
+    // confirm the contents of the post
+
     cy.get(".posts").should(
       "contain",
       "Hello, world!",
+      "a few seconds ago",
       "https://picsum.photos/536/354",
       "be.visible"
     );
-    
-    // the post shows the time since
-
-    cy.get(".posts").should("contain", "a few seconds ago");
 
     // the post shows the author's username & profile picture
 
@@ -38,7 +41,7 @@ describe("Timeline", () => {
 
     // submit a second post and check that it appears above the previous post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
 
     cy.get("#new-post-form").find("#message").type("I'm the latest post");
     cy.get("#new-post-form")

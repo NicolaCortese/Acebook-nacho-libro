@@ -11,5 +11,8 @@ describe("Sign out", () => {
     //sign out
     cy.get("#btn-sign-out").click();
     cy.url().should("include", "/sessions/new");
+
+    // get a confirmation alert
+    cy.get("#content").should("contain", "Successfully logged out!")
   });
 });

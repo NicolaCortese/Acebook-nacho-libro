@@ -16,6 +16,7 @@ describe("Nav bar", () => {
 
       cy.get("#li-timeline").should("contain", "Timeline");
       cy.get("#li-post").should("contain", "Post");
+      cy.get("#li-profile").should("contain", "batman");
       cy.get("#btn-sign-out").should("have.value", "Sign out");
     });
   });

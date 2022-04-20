@@ -8,7 +8,7 @@ describe("Edit", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
     cy.get("#new-post-form").find("#message").type("Unedited batman message");
     cy.get("#new-post-form").submit();
     cy.get(".posts").should("contain", "Unedited batman message");
@@ -29,6 +29,8 @@ describe("Edit", () => {
       "https://picsum.photos/536/354",
       "be.visible"
     );
+    // get the confirmation alert
+    cy.get("#content").should("contain", "The post has been successfully edited!")
   });
 
   it("can only edit if the user is an author of the post", () => {
