@@ -51,6 +51,7 @@ const updateLikes = (data) => {
   likeNamesEl.innerText = ""
   data.likes.forEach(like => {
     let para = document.createElement("p")
+    para.className = "like-name"
     para.innerText = like
     likeNamesEl.append(para)
   })

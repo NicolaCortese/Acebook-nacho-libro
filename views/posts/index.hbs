@@ -18,7 +18,7 @@
       <button class="{{ifLiked this.likes ../session.username}}-button" id="{{this._id}}">
         {{ifLiked this.likes ../session.username}}
       </button>
-      <button class="accordion"><p class="like-msg">
+      <div class="accordion"><p class="like-msg">
       <span
         class="likes-count"
         id="likes-count-{{this._id}}"
@@ -26,7 +26,7 @@
       </button>
         <div class="panel">
           {{#each this.likes}}
-            <p>{{this}}</p>
+            <p class="like-name">{{this}}</p>
           {{/each}}
         </div>
     </li>
