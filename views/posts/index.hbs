@@ -3,33 +3,31 @@
 <ul class="posts">
   {{#each (reverse posts)}}
     <li class="post" id="post-{{this._id}}">
-      Posted by:
+      <div class="post-header">
       <img src="{{this.author.profilePic}}" class="profile-pic" />
-      {{this.author.username}}<br />
-      <img src="{{this.image_url}}" /><br />
-      {{timeAgo this.timestamp}}<br />
-      {{this.message}}<br />
+      <span class="user-name">{{this.author.username}}</span><br>
+      <span class="time-ago">{{timeAgo this.timestamp}}</span><br />
+      {{#if (equal this.author.username ../session.username)}}
+        <a href="/posts/{{this._id}}/delete" id="del-link">delete</a>
+        <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
+      {{/if}}
+      </div>
+      <img class="post-image" src="{{this.image_url}}" />
+      <p class="post-message">{{this.message}}</p>
       <button class="like-button" id="{{this._id}}">
         {{ifLiked this.likes ../session.username}}
-      </button><br />
-      Number of likes:
+      </button>
+      <button class="accordion"><p class="like-msg">
       <span
         class="likes-count"
         id="likes-count-{{this._id}}"
-      >{{this.likes.length}}</span><br />
-
-      <button class="accordion">Liked by:</button>
+      >{{this.likes.length}}</span> nachos have liked this</p>
+      </button>
         <div class="panel">
           {{#each this.likes}}
             <p>{{this}}</p>
           {{/each}}
         </div>
     </li>
-    {{#if (equal this.author.username ../session.username)}}
-    <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
-    <a href="/posts/{{this._id}}/delete" id="del-link">delete</a>
-    {{/if}}
   {{/each}}
 </ul>
-
-<a class="new-post-link" href="/posts/new">New post</a>

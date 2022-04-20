@@ -23,7 +23,10 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
+      req.session.message = {
+        type: "success",
+        message: "The post has been successfully created!",
+      };
       res.status(201).redirect("/posts");
     });
   },
@@ -34,7 +37,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
+      
       res.render("posts/edit", { post: post[0] });
     });
   },
@@ -46,6 +49,10 @@ const PostsController = {
       { _id: post_id },
       { $set: { message: post.message, image_url: post.image } },
       () => {
+        req.session.message = {
+          type: "success",
+          message: "The post has been successfully edited!",
+        };
         res.redirect("..");
       }
     );
@@ -55,6 +62,10 @@ const PostsController = {
     const post_id = req.params.id
     console.log(post_id)
     Post.deleteOne({ _id: post_id }, () => {
+      req.session.message = {
+        type: "info",
+        message: "The post has been successfully deleted!",
+      };
       res.redirect("..");
     });
   },

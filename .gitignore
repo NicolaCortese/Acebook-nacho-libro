@@ -65,3 +65,8 @@ cypress/screenshots
 cypress/videos
 
 .vscode/
+
+# DS_Store
+.DS_Store
+public/.DS_Store
+public/images/.DS_Store

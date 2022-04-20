@@ -8,7 +8,7 @@ describe("Likes", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
     cy.get("#new-post-form").find("#message").type("Hello, world!");
     cy.get("#new-post-form").submit();
 
@@ -26,16 +26,16 @@ describe("Likes", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
     cy.get("#new-post-form").find("#message").type("Hello, world!");
     cy.get("#new-post-form").submit();
 
     // likes the post
-    cy.get(".like-button").first().click();
+    cy.get(".like-button").first().should("contain", "Like").click();
     cy.get(".likes-count").should("contain", "1");
 
     //unlike the post
-    cy.get(".like-button").first().should("contain", "Unlike").click();
+    cy.get(".unlike-button").first().should("contain", "Unlike").click();
     cy.get(".likes-count").should("contain", "0");
   });
 });
