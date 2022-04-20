@@ -1,5 +1,6 @@
 const likeButton = document.querySelectorAll(".Like-button");
 const unlikeButton = document.querySelectorAll(".Unlike-button");
+
 likeButton.forEach((element) => {
   element.addEventListener("click", () => {
     onLikeButtonClick(element);
@@ -14,19 +15,6 @@ unlikeButton.forEach((element) => {
   });
 });
 
-const accordionEl = document.querySelectorAll(".accordion");
-accordionEl.forEach((element) => {
-  element.addEventListener("click", function () {
-    this.classList.toggle("active");
-    const panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-});
-
 /* eslint-disable */
 const onLikeButtonClick = (element) => {
   axios
@@ -34,7 +22,7 @@ const onLikeButtonClick = (element) => {
       post_id: element.id,
     })
     .then((response) => {
-      updateLikes(response.data);
+      updateLikes(response.data, element.id);
     })
     .catch((error) => {
       console.log(error);
@@ -42,9 +30,9 @@ const onLikeButtonClick = (element) => {
 };
 /* eslint-enable */
 
-const updateLikes = (data) => {
-  let likeCountEl = document.querySelector(".likes-count")
-  let likeNamesEl = document.querySelector(".panel")
+const updateLikes = (data, post_id) => {
+  let likeCountEl = document.querySelector(`#likes-count-${post_id}`)
+  let likeNamesEl = document.querySelector(`#like-names-${post_id}`)
   likeCountEl.innerText = (data.likes.length)
   
   // logic probably needed for liking or unliking
@@ -59,7 +47,6 @@ const updateLikes = (data) => {
 
 let toggleButtonText = {
   Like: (button) => {
-    console.log("button toggled");
     button.textContent = "Unlike";
     button.className = "Unlike-button";
   },

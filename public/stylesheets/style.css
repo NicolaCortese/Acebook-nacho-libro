@@ -165,8 +165,7 @@ a#edit-link, #del-link {
   color: #b7b7b7;
   text-decoration: none;
   text-transform: capitalize;
-  margin-top: -23px;
-  margin-left: 5px;
+  margin: -23px -4px 0 5px;
   float: right;
   width: 30px;
   height: 30px;
@@ -174,8 +173,10 @@ a#edit-link, #del-link {
   opacity: 0.6;
   transition: opacity ease-in-out 0.2s;
 }
+
 a#edit-link:hover, #del-link:hover {
   opacity: 1;
+  margin-top: -27px;
 }
 
 a#edit-link {
@@ -185,6 +186,7 @@ a#edit-link {
 
 a#del-link {
   background: url("/images/recycle-bin.png") 0 0 / 17px 17px no-repeat;
+  margin-right: 32px;
 }
 .link-button:active {
   color: #00b7ff;
@@ -203,9 +205,9 @@ button.Like-button {
   outline: none;
   font-size: 0px;
   cursor: pointer;
-  margin-left: 10px;
   transition: 0.4s;
-  position: absolute;
+  float: right;
+  margin: -22px 14px 0 0;
 }
 
 button.Unlike-button {
@@ -214,69 +216,16 @@ button.Unlike-button {
   height: 17px;
   border: none;
   outline: none;
-  font-size: 0;
-  margin-left: 10px;
+  font-size: 0px;
   cursor: pointer;
   transition: 0.4s;
-  position: absolute;
-}
-
-/* like-count & contents */
-
-p.like-msg {
-  margin-top: -3px;
-  margin-left: 35px;
-}
-
-span.likes-count {
-
-}
-
-/* Style the buttons that are used to open and close the accordion panel */
-.accordion {
-  color: #444;
-  background-color: #fff;
-  cursor: pointer;
-  padding: 3px;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-  content: "•"
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active,
-.accordion:hover {
-  color: #A4E276ff;
-}
-
-.accordion:after {
-  font-size: 13px;
-  color: #777;
   float: right;
-  margin-left: 5px;
+  margin: -22px 14px 0 0;
 }
 
-.panel {
-  margin: -30px 0 0 40px;
-  font-size: 13px;
-  display: flex;
-  justify-content:left;
+.Like-button:hover, .Unlike-button:hover {
+  margin-top: -27px;
 }
-
-.like-name {
-  color: rgb(181, 181, 181);
-  margin-right: 6px;
-}
-/* 
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-} */
 
 /* alerts */
 
@@ -306,4 +255,57 @@ span.likes-count {
 
 .closebtn:hover {
   color: rgb(132, 132, 132);
+}
+
+/* likes hover */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  font-style: italic;
+  color:rgb(98, 98, 98);
+  margin-left: 10px;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: #fff;
+  color: #555;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border: 1px solid #bebebe;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.like-name {
+  color: rgb(181, 181, 181);
+  margin-right: 6px;
+}
+
+.likes-count {
+
 }

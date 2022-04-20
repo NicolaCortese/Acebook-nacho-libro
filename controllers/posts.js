@@ -73,15 +73,7 @@ const PostsController = {
   Like: async (req, res) => {
     const post_id = req.body.post_id;
     const user = req.session.user;
-
-    // Post.updateOne(
-    //   { _id: post_id },
-    //   { $push: { likes: user.username } },
-    //   () => {
-    //     res.send("Liked");
-    //   }
-    // );
-
+    
     let result = await Post.findOneAndUpdate(
       { _id: post_id },
       { $addToSet: { likes: user.username } },
