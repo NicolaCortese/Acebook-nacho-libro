@@ -30,14 +30,13 @@
         <span class="liked-by">{{this}}</span><br />
       {{/each}}
     
-      Commented by:<br />
+      Comments:<br />
       {{#each this.comments}}
-        <span class="commented-by">{{this}}</span><br />
+      <span class="commented-by">{{this.author}}: {{this.message}}</span><br />
       {{/each}}
 
 
       <div>
-        <label for="comment">Comment: {{this.author.username}} </label><br />
         <textarea id="text-comment-{{this._id}}" type="text"  placeholder="comment here"></textarea><br />
         <input type="button" value="Comment" class="comment-button" id="comment-{{this._id}}">
       </div>
