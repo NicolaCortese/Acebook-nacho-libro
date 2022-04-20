@@ -36,11 +36,11 @@
       {{/each}}
 
 
-      <form id="comment" method="post">
-        <label for="comment">Comment: {{this}} </label>
-        <textarea id="comment-text" type="text" name="message" placeholder="comment here"></textarea>
-        <input type="submit" value="Comment" class="comment-button" id="{{this._id}}">
-      </form>
+      <div>
+        <label for="comment">Comment: {{this.author.username}} </label><br />
+        <textarea id="comment-text" type="text"  placeholder="comment here"></textarea><br />
+        <input type="button" value="Comment" class="comment-button" id="comment-{{this._id}}">
+      </div>
 
 
     </li>
