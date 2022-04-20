@@ -62,9 +62,19 @@ const UsersController = {
     }
   },
   Profile: (req, res) => {
-    const user = req.session.user.username;
-    Post.find({ "author.username": user }, (err, posts) => {
-      res.render("users/profile", { posts: posts });
+    const username = req.params.username;
+    User.findOne({ username: username }, (err, user) => {
+      if (user) {
+        Post.find({ "author.username": username }, (err, posts) => {
+          res.render("users/profile", { profile: {posts: posts, user: user} });
+        });
+      } else {
+        //user not found
+        const error = {
+          status: `The user "${username}" has not been found`,
+        };
+        res.render("error", { error: error });
+      }
     });
   },
 

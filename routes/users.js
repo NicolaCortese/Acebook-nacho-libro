@@ -9,7 +9,7 @@ router.get("/new", UsersController.New);
 // called when submitting the new user form
 router.post("/", UsersController.Create);
 
-router.get("/profile", UsersController.Profile);
+router.get("/:username/profile", UsersController.Profile);
 
 // User Settings
 router.get("/:username/settings", UsersController.Settings);

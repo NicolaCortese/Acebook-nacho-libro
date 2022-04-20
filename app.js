@@ -110,5 +110,7 @@ handlebars.registerHelper("ifLiked", (postLikedBy, sessionUser) => {
 });
 handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow());
 handlebars.registerHelper("equal", (one, two) => one === two);
+// handlebars.registerHelper("bdayFormat", (bdayDate) => moment(bdayDate).format("DD/MM/YYYY"));
+handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 module.exports = app;

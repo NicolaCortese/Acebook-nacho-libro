@@ -1,7 +1,23 @@
-<h1> {{session.username}}'s profile page</h1>
-
+<h1> {{profile.user.username}}'s profile page</h1>
+<ul>
+  <li id="birthday">
+     {{ dateFormat profile.user.birthday "DD/MM/YYYY" }}
+</li>
+  <li id="worksAt">
+    {{ profile.user.worksAt }}
+</li>
+  <li id="hobbies">
+    {{ profile.user.hobbies }}
+</li>
+  <li id="coverPhoto">
+    <img src="{{profile.user.coverPhoto}}" />
+</li>
+  <li id="livesIn">
+    {{ profile.user.livesIn}}
+</li>
+</ul>
 <ul class="posts">
-  {{#each (reverse posts)}}
+  {{#each (reverse profile.posts)}}
     <li class="post" id="post-{{this._id}}">
       <div class="post-header">
       <img src="{{this.author.profilePic}}" class="profile-pic" />
