@@ -1,20 +1,18 @@
-const commentButton = document.querySelectorAll(".comment-button");
+const commentButton = document.querySelectorAll(".comment-button"); 
 
 commentButton.forEach((element) => {
   element.addEventListener("click", () => {
-    console.log(element)
-    const commentText = document.querySelector(".comment-text")
     onCommentButtonClick(element);
-    console.log('it works')
   });
 });
 
 /* eslint-disable */
 const onCommentButtonClick = (element) => {
+  const commentText = document.querySelector(`#text-${element.id}`).value
   axios
     .post(`/posts/${element.id}/comment`, {
-
-      post_id: element.id,
+      text: commentText,
+      post_id: element.id.replace("comment-",""),
     })
     .then((response) => {
       console.log(response);

@@ -6,7 +6,11 @@ const PostSchema = new mongoose.Schema({
   timestamp: { type : Date, default: Date.now },
   author: Object,
   likes: Array,
-  comments: Array
+  comments: [{
+    message: String,
+    author: String,
+    timestamp: { type : Date, default: Date.now }
+  }]
 });
 
 const Post = mongoose.model("Post", PostSchema);
