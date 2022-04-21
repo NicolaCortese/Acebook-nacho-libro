@@ -7,8 +7,8 @@ describe("Other likes on a post", () => {
     cy.get("#submit").click();
 
     // checks the accordion
-    cy.get(".panel").first().should("contain", "Robin");
-    cy.get(".panel").first().should("contain", "Batman");
-    cy.get(".panel").first().should("contain", "Penguin");
+    cy.get(".tooltiptext").first().should("contain", "Robin");
+    cy.get(".tooltiptext").first().should("contain", "Batman");
+    cy.get(".tooltiptext").first().should("contain", "Penguin");
   });
 });

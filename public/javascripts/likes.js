@@ -1,27 +1,17 @@
-const likeButton = document.querySelectorAll(".like-button");
+const likeButton = document.querySelectorAll(".Like-button");
+const unlikeButton = document.querySelectorAll(".Unlike-button");
+
 likeButton.forEach((element) => {
   element.addEventListener("click", () => {
     onLikeButtonClick(element);
-    updatePostStats[element.textContent.trim()](element.id);
-    // updateLikedByList[element.textContent.trim()](element.id);
     toggleButtonText[element.textContent.trim()](element);
   });
 });
 
-const accordionEl = document.querySelectorAll(".accordion");
-accordionEl.forEach((element) => {
-  element.addEventListener("click", function () {
-    /* Toggle between adding and removing the "active" class,
-    to highlight the button that controls the panel */
-    this.classList.toggle("active");
-
-    /* Toggle between hiding and showing the active panel */
-    const panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
+unlikeButton.forEach((element) => {
+  element.addEventListener("click", () => {
+    onLikeButtonClick(element);
+    toggleButtonText[element.textContent.trim()](element);
   });
 });
 
@@ -32,7 +22,7 @@ const onLikeButtonClick = (element) => {
       post_id: element.id,
     })
     .then((response) => {
-      console.log(response);
+      updateLikes(response.data, element.id);
     })
     .catch((error) => {
       console.log(error);
@@ -40,41 +30,28 @@ const onLikeButtonClick = (element) => {
 };
 /* eslint-enable */
 
-let updatePostStats = {
-  Like: function (postId) {
-    document.querySelector("#likes-count-" + postId).textContent++;
-  },
-  Unlike: function (postId) {
-    document.querySelector("#likes-count-" + postId).textContent--;
-  },
-};
+const updateLikes = (data, post_id) => {
+  let likeCountEl = document.querySelector(`#likes-count-${post_id}`)
+  let likeNamesEl = document.querySelector(`#like-names-${post_id}`)
+  likeCountEl.innerText = (data.likes.length)
+  
+  // logic probably needed for liking or unliking
+  likeNamesEl.innerText = ""
+  data.likes.forEach(like => {
+    let para = document.createElement("p")
+    para.className = "like-name"
+    para.innerText = like
+    likeNamesEl.append(para)
+  })
+}
 
 let toggleButtonText = {
   Like: (button) => {
-    console.log("button toggled");
     button.textContent = "Unlike";
-    button.className = "unlike-button";
+    button.className = "Unlike-button";
   },
   Unlike: (button) => {
     button.textContent = "Like";
-    button.className = "like-button";
+    button.className = "Like-button";
   },
 };
-
-// let updateLikedByList = {
-//   Like: (postId) => {
-//     console.log("check this has been called");
-//     const post = document.querySelector("#post-" + postId);
-//     const likedBy = document.createElement("span");
-//     likedBy.innerText = "Batman placeholder";
-//     post.append(likedBy);
-//   },
-//   Unlike: (button) => {
-//     // find the liked-by list
-//     // remove the user from the list
-//     console.log("check this has been called");
-//     const post = document.querySelector("#post-" + postId);
-//     const likedBy = document.createElement("span");
-//     likedBy.innerText = "Batman placeholder";
-//   },
-// };
