@@ -35,10 +35,8 @@ const updateComments = (data) => {
   
   data.comments.forEach(comment => {
    
-    // console.log(comment._id)
     let commentObject = document.createElement('div')
     commentObject.className = `comment-object`
-    // commentObject.id = comment.id
     commentSectionEl.append(commentObject)
     console.log(comment._id)
     
@@ -53,15 +51,17 @@ const updateComments = (data) => {
     text.innerText = comment.message
     commentObject.append(text)
 
+/* eslint-disable */
+
     let time = document.createElement("p")
     time.className = "comment-timeago"
-    // time.dateTime = comment.timestamp
     time.innerText = moment().to(comment.timestamp)
     commentObject.append(time)
     
 
   })
 }
+/* eslint-enable */
 
 const removeComments = (data) => {
     console.log(data._id)
