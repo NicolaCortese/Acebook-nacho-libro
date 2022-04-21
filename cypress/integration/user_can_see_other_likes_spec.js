@@ -8,7 +8,6 @@ describe("Other likes on a post", () => {
 
     // checks the accordion
     cy.get(".tooltiptext").first().should("contain", "Robin");
-    cy.get(".tooltiptext").first().should("contain", "Batman");
     cy.get(".tooltiptext").first().should("contain", "Penguin");
   });
 });
