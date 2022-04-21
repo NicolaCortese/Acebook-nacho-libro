@@ -49,23 +49,67 @@ const UsersController = {
       } else {
         req.session.message = {
           type: "success",
-          message: "You are now registered! Please sign in.",
+          message: "You are now registered! Please edit your profile.",
         };
         console.log(`User information: ${user}`);
         user.save((err) => {
           if (err) {
             throw err;
           }
-          res.status(201).redirect("/sessions/new");
+          res.status(201).redirect(`/users/${user.username}/settings`);
         });
       }
     }
   },
   Profile: (req, res) => {
-    const user = req.session.user.username;
-    Post.find({ "author.username": user }, (err, posts) => {
-      res.render("users/profile", { posts: posts });
+    const username = req.params.username;
+    User.findOne({ username: username }, (err, user) => {
+      if (user) {
+        Post.find({ "author.username": username }, (err, posts) => {
+          res.render("users/profile", { profile: {posts: posts, user: user} });
+        });
+      } else {
+        //user not found
+        const error = {
+          status: `The user "${username}" has not been found`,
+        };
+        res.render("error", { error: error });
+      }
     });
+  },
+
+  Settings: (req, res) => {
+    console.log("User settings running...");
+    const username = req.params.username;
+
+    res.render("users/settings", { username: username });
+  },
+
+  Update: (req, res) => {
+    const username = req.params.username;
+    const userInfo = req.body;
+    console.log(userInfo);
+    User.updateOne(
+      { username: username },
+      {
+        $set: {
+          profilePic: userInfo.profilePic,
+          coverPhoto: userInfo.coverPhoto,
+          birthday: userInfo.birthday,
+          livesIn: userInfo.livesIn,
+          worksAt: userInfo.worksAt,
+          hobbies: userInfo.hobbies,
+        },
+      },
+      () => {
+        req.session.message = {
+          type: "success",
+          message: "Thanks for adding the info! Please sign in.",
+        };
+        console.log("Update is running...");
+        res.redirect("/sessions/new");
+      }
+    );
   },
 };
 
