@@ -83,20 +83,19 @@ const PostsController = {
       }
     );
   },
-  Comment: (req, res) => {
+  Comment: async (req, res) => {
     const post_id = req.body.post_id;
     const text = req.body.text
     const user = req.session.user;
    
-
-
-    Post.updateOne(
+    let result = await Post.findOneAndUpdate(
       { _id: post_id },
       { $push: { comments: {author: user.username, message: text}} },
-      () => {
-        res.send("Comment has been made successfully");
+      {
+        new: true,
       }
     );
+    res.send(result);
   }
 };
 
