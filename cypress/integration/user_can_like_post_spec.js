@@ -32,6 +32,6 @@ describe("Likes", () => {
 
     //unlikes a post that has already been liked
     cy.get(".unlike-button").last().should("contain", "Unlike").click();
-    cy.get(".likes-count").eq(0).should("contain", "3");
+    cy.get(".likes-count").eq(2).should("contain", "3");
   });
 });
