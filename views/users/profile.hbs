@@ -1,21 +1,52 @@
-<h1> {{profile.user.username}}'s profile page</h1>
-<ul>
-  <li id="birthday">
-     {{ dateFormat profile.user.birthday "DD/MM/YYYY" }}
-</li>
-  <li id="worksAt">
-    {{ profile.user.worksAt }}
-</li>
-  <li id="hobbies">
-    {{ profile.user.hobbies }}
-</li>
-  <li id="coverPhoto">
-    <img src="{{profile.user.coverPhoto}}" />
-</li>
-  <li id="livesIn">
-    {{ profile.user.livesIn}}
-</li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/profile.css">
+  <title>Profile</title>
+</head>
+<body>
+  <div id="coverPhotoDiv">
+      <img id="coverPhoto" src="{{profile.user.coverPhoto}}" />
+  </div>
+  <div class="main-container">
+    <div id="profilePicDiv">
+       <img  id="profilePic" src="{{profile.user.profilePic}}" />
+    </div>
+    <div class="profile-bio"> 
+      <ul> 
+        <h3 class="profile-username"> {{profile.user.username}}</h3>
+        <li id="birthday" >
+          <img src="/images/birthday-cake.png" id="profileLogos" />
+          <strong> Birthday: </strong>{{ dateFormat profile.user.birthday "DD/MM/YYYY" }}
+        </li>
+        <li id="worksAt">
+          <img src="/images/working.png" id="profileLogos" />
+          <strong>Works at:</strong> {{ profile.user.worksAt }}
+        </li>
+        <li id="hobbies">
+          <img src="/images/guitar.png" id="profileLogos" />
+          <strong>Hobbies:</strong> {{ profile.user.hobbies }} 
+        </li>
+    
+        <li id="livesIn">
+          <img src="/images/location.png" id="profileLogos" />
+          <strong>Lives in: </strong>{{ profile.user.livesIn}}
+        </li>
+        {{#if (equal session.username profile.user.username) }}
+          <li>  
+            <img src="/images/editing.png" id="profileLogos" />
+            <button class="btnProfile">
+               <a class="editProfile" href="/users/{{profile.user.username}}/settings">Edit Profile</a>
+            </button>
+          </li> 
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+  
 <ul class="posts">
   {{#each (reverse profile.posts)}}
     <li class="post" id="post-{{this._id}}">
@@ -48,3 +79,11 @@
     </li>
   {{/each}}
 </ul>
+</body>
+</html>
+
+
+
+
+
+

@@ -41,13 +41,17 @@ describe("Registration", () => {
 
     //redirects to profile page
     cy.url().should("include", "/users/someone/profile");
-    cy.get("#coverPhoto").find("img").should("be.visible");
+    cy.get("#coverPhotoDiv").find("img").should("be.visible");
+    cy.get("#profilePicDiv").find("img").should("be.visible");
 
     cy.get("#birthday").should("contain", "01/01/200");
     cy.get("#livesIn").should("contain", "Maracaibo");
     cy.get("#worksAt").should("contain", "NASA");
     cy.get("#hobbies").should("contain", "Sailing, Bowling and Eating");
+    cy.get(".editProfile").should("contain", "Edit Profile");
   });
+
+  
 
   it("will not sign up if the email already exists", () => {
     // sign up
