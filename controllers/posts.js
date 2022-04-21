@@ -23,14 +23,17 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
+      req.session.message = {
+        type: "success",
+        message: "The post has been successfully created!",
+      };
       res.status(201).redirect("/posts");
     });
   },
 
   Edit: (req, res) => {
     const post_id = req.params.id;
-    Post.find({_id: post_id}, (err, post) => {
+    Post.find({ _id: post_id }, (err, post) => {
       if (err) {
         throw err;
       }
@@ -46,42 +49,52 @@ const PostsController = {
       { _id: post_id },
       { $set: { message: post.message, image_url: post.image } },
       () => {
+        req.session.message = {
+          type: "success",
+          message: "The post has been successfully edited!",
+        };
         res.redirect("..");
       }
     );
   },
 
   Delete: (req, res) => {
-    const post_id = req.params.id
-    console.log(post_id)
+    const post_id = req.params.id;
+    console.log(post_id);
     Post.deleteOne({ _id: post_id }, () => {
+      req.session.message = {
+        type: "info",
+        message: "The post has been successfully deleted!",
+      };
       res.redirect("..");
     });
   },
-  
-  Like: (req, res) => {
+
+  Like: async (req, res) => {
     const post_id = req.body.post_id;
     const user = req.session.user;
-
-    Post.updateOne(
+    
+    let result = await Post.findOneAndUpdate(
       { _id: post_id },
-      { $push: { likes: user.username } },
-      () => {
-        res.send("Like went through to the server");
+      { $addToSet: { likes: user.username } },
+      {
+        new: true,
       }
     );
+    res.send(result);
   },
-  Unlike: (req, res) => {
+  Unlike: async (req, res) => {
     const post_id = req.body.post_id;
     const user = req.session.user;
 
-    Post.updateOne(
+    let result = await Post.findOneAndUpdate(
       { _id: post_id },
       { $pull: { likes: user.username } },
-      () => {
-        res.send("User was removed from the likes");
+      {
+        new: true,
       }
     );
+    res.send(result);
   },
   Comment: async (req, res) => {
     const post_id = req.body.post_id;

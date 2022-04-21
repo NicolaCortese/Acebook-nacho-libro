@@ -1,30 +1,33 @@
 <h1> {{session.username}}'s profile page</h1>
 
 <ul class="posts">
-    {{#each (reverse posts)}}
-    <li class="post">
-      Posted by:
+  {{#each (reverse posts)}}
+    <li class="post" id="post-{{this._id}}">
+      <div class="post-header">
       <img src="{{this.author.profilePic}}" class="profile-pic" />
-      {{this.author.username}}<br />
-      <img src="{{this.image_url}}" /><br />
-      {{timeAgo this.timestamp}}<br />
-      {{this.message}}<br />
-      <button class="like-button" id="{{this._id}}">
+      <span class="user-name">{{this.author.username}}</span><br>
+      <span class="time-ago">{{timeAgo this.timestamp}}</span><br />
+      <button class="{{ifLiked this.likes ../session.username}}-button" id="{{this._id}}">
         {{ifLiked this.likes ../session.username}}
-      </button><br />
-      Number of likes:
+      </button>
+      {{#if (equal this.author.username ../session.username)}}
+        <a href="/posts/{{this._id}}/delete" id="del-link">delete</a>
+        <a href="/posts/{{this._id}}/edit" id="edit-link">edit</a>
+      {{/if}}
+      </div>
+      <img class="post-image" src="{{this.image_url}}" />
+      <p class="post-message">{{this.message}}</p>
+      <div class="tooltip"><p class="like-msg">
       <span
         class="likes-count"
         id="likes-count-{{this._id}}"
-      >{{this.likes.length}}</span><br />
-      Liked by:<br />
-      {{#each this.likes}}
-        <span class="liked-by">{{this}}</span><br />
-      {{/each}}
+      >{{this.likes.length}}</span> nachos have liked this</p>
+      </button>
+        <div class="tooltiptext" id="like-names-{{this._id}}">
+          {{#each this.likes}}
+            <p class="like-name">{{this}}</p>
+          {{/each}}
+        </div>
     </li>
-    {{#if (equal this.author.username ../session.username)}}
-    <a href="/posts/{{this._id}}/edit">edit</a>
-    <a href="/posts/{{this._id}}/delete">delete</a>
-    {{/if}}
   {{/each}}
 </ul>

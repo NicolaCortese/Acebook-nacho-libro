@@ -14,18 +14,25 @@ const SessionsController = {
     User.findOne({ email: email }).then((user) => {
       if (!user) {
         res.redirect("/sessions/new");
-        console.log("Unsuccessful login!");
       } else {
         const hashedPassword = user.password;
         bcrypt.compare(plainTextPassword, hashedPassword, (err, result) => {
           if (result) {
-            console.log("Successfully logged in!");
+            req.session.message = {
+              type: "success",
+              message: "Successfully logged in!",
+            };
             req.session.user = user;
             res.redirect("/posts");
           } else {
             console.log(err);
+            req.session.message = {
+              type: "danger",
+              message:
+                "Unsuccessful login! Please check your email or password.",
+            };
             res.redirect("/sessions/new");
-            console.log("Unsuccessful login!");
+            // console.log("Unsuccessful login!");
           }
         });
       }
@@ -34,6 +41,10 @@ const SessionsController = {
 
   Destroy: (req, res) => {
     console.log("logging out");
+    //    req.session.message = {
+    //   type: "success",
+    //   message: "Successfully logged out!",
+    // };
     if (req.session.user && req.cookies.user_sid) {
       res.clearCookie("user_sid");
     }

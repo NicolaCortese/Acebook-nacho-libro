@@ -2,37 +2,58 @@
   <head>
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel=”shortcut icon” href=”/images/favicon.ico”>
   </head>
   <body>
-    <div id="nav-bar"><ul id="nav-ul">
-        {{#if session.username}}
-          <li class="nav-li" id="li-timeline"><a href="/posts">Timeline</a></li>
-          <li class="nav-li" id="li-post"><a href="/posts/new">Post</a></li>
-          <li class="nav-li" id="li-profile"><a
-              href="/users/profile"
-            >{{session.username}}'s profile</a></li>
-          <li class="nav-li" id="li-sign-out">
-            <form action="/sessions?_method=DELETE" method="POST">
-              <input
-                type="submit"
-                class="link-button"
-                id="btn-sign-out"
-                value="Sign out"
-              />
-            </form></li>
-        {{else}}
-          <li class="nav-li" id="li-sign-in"><a href="/sessions/new">Sign in</a></li>
-          <li class="nav-li" id="li-sign-up"><a
-              href="/users/new"
-              id="signup"
-            >Sign up</a></li>
-        {{/if}}
-      </ul>
-    </div>
+    <div id="main-container">
+      <div id="nav-bar"><ul id="nav-ul"><img
+              src="/images/logo.png"
+              id="logo"
+            />
+          <li class="nav-li" id="li-title"><a href="/posts" id="a-title">Nacho Libro</a></li>
+          {{#if session.username}}
+            <li class="nav-li" id="li-timeline"><a
+                href="/posts"
+              >Timeline</a></li>
+            <li class="nav-li" id="li-post"><a href="/posts/new">Post</a></li>
+            <li class="nav-li" id="li-profile"><a href="/users/profile"><img
+                  id="nav-img"
+                  src="{{session.profilePic}}"
+                />{{session.username}}</a></li>
+            <li class="nav-li" id="li-sign-out">
+              <form action="/sessions?_method=DELETE" method="POST">
+                <input
+                  type="submit"
+                  class="link-button"
+                  id="btn-sign-out"
+                  value="Sign out"
+                />
+              </form></li>
+          {{else}}
+            <li class="nav-li" id="li-sign-in"><a href="/sessions/new">Sign in</a></li>
+            <li class="nav-li" id="li-sign-up"><a
+                href="/users/new"
+                id="signup"
+              >Sign up</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    <div id="content">
+    {{! Flash Notice Message }}
+    {{#if message}}
+      <div style="text-align: center;" class="alert alert-{{message.type}}">
+        <span class="closebtn">&times;</span> 
+        <strong>{{message.message}}</strong>
+      </div>
+    {{/if}}
+
     {{{body}}}
+    </div>
+    </div>
     <script src="/javascripts/axios.min.js"></script>
     <script src="/javascripts/moment.min.js"></script>
     <script src="/javascripts/likes.js"></script>
     <script src="/javascripts/comments.js"></script>
+    <script src="/javascripts/alerts.js"></script>
   </body>
 </html>

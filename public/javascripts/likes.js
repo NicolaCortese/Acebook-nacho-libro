@@ -1,8 +1,16 @@
-const likeButton = document.querySelectorAll(".like-button");
+const likeButton = document.querySelectorAll(".Like-button");
+const unlikeButton = document.querySelectorAll(".Unlike-button");
+
 likeButton.forEach((element) => {
   element.addEventListener("click", () => {
     onLikeButtonClick(element);
-    updatePostStats[element.textContent.trim()](element.id);
+    toggleButtonText[element.textContent.trim()](element);
+  });
+});
+
+unlikeButton.forEach((element) => {
+  element.addEventListener("click", () => {
+    onLikeButtonClick(element);
     toggleButtonText[element.textContent.trim()](element);
   });
 });
@@ -14,7 +22,7 @@ const onLikeButtonClick = (element) => {
       post_id: element.id,
     })
     .then((response) => {
-      console.log(response);
+      updateLikes(response.data, element.id);
     })
     .catch((error) => {
       console.log(error);
@@ -22,20 +30,28 @@ const onLikeButtonClick = (element) => {
 };
 /* eslint-enable */
 
-let updatePostStats = {
-  Like: function (postId) {
-    document.querySelector("#likes-count-" + postId).textContent++;
-  },
-  Unlike: function (postId) {
-    document.querySelector("#likes-count-" + postId).textContent--;
-  },
-};
+const updateLikes = (data, post_id) => {
+  let likeCountEl = document.querySelector(`#likes-count-${post_id}`)
+  let likeNamesEl = document.querySelector(`#like-names-${post_id}`)
+  likeCountEl.innerText = (data.likes.length)
+  
+  // logic probably needed for liking or unliking
+  likeNamesEl.innerText = ""
+  data.likes.forEach(like => {
+    let para = document.createElement("p")
+    para.className = "like-name"
+    para.innerText = like
+    likeNamesEl.append(para)
+  })
+}
 
 let toggleButtonText = {
   Like: (button) => {
     button.textContent = "Unlike";
+    button.className = "Unlike-button";
   },
   Unlike: (button) => {
     button.textContent = "Like";
+    button.className = "Like-button";
   },
 };

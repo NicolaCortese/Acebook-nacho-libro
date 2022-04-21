@@ -1,5 +1,5 @@
 describe("Likes", () => {
-  it("can like the posts, view who liked it and the number of likes", () => {
+  it("can like the posts and the number of likes", () => {
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("batman@example.com");
@@ -8,18 +8,16 @@ describe("Likes", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
     cy.get("#new-post-form").find("#message").type("Hello, world!");
     cy.get("#new-post-form").submit();
 
     // likes the post
     cy.get(".like-button").first().click();
     cy.get(".likes-count").should("contain", "1");
-    cy.visit("/posts");
-    cy.get(".liked-by").should("contain", "batman");
   });
 
-  it("we can unlike a post, the like count should decrease, and the name should be removed from the liked by", () => {
+  it("we can unlike a post and the like count should decrease", () => {
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("batman@example.com");
@@ -28,20 +26,16 @@ describe("Likes", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
     cy.get("#new-post-form").find("#message").type("Hello, world!");
     cy.get("#new-post-form").submit();
 
     // likes the post
-    cy.get(".like-button").first().click();
+    cy.get(".like-button").first().should("contain", "Like").click();
     cy.get(".likes-count").should("contain", "1");
-    cy.visit("/posts");
-    cy.get(".liked-by").should("contain", "batman");
 
     //unlike the post
-    cy.get(".like-button").first().should("contain", "Unlike").click();
+    cy.get(".unlike-button").first().should("contain", "Unlike").click();
     cy.get(".likes-count").should("contain", "0");
-    cy.visit("/posts");
-    cy.get(".liked-by").should("not.exist");
   });
 });
