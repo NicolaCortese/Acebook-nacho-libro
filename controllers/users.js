@@ -66,7 +66,9 @@ const UsersController = {
     User.findOne({ username: username }, (err, user) => {
       if (user) {
         Post.find({ "author.username": username }, (err, posts) => {
-          res.render("users/profile", { profile: {posts: posts, user: user} });
+          res.render("users/profile", {
+            profile: { posts: posts, user: user },
+          });
         });
       } else {
         //user not found
@@ -107,7 +109,11 @@ const UsersController = {
           message: "Thanks for adding the info! Please sign in.",
         };
         console.log("Update is running...");
-        res.redirect("/sessions/new");
+        if (!req.session.user) {
+          res.redirect("/sessions/new");
+        } else {
+          res.redirect(`/users/${username}/profile`);
+        }
       }
     );
   },
