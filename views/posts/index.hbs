@@ -5,9 +5,6 @@
     <li class="post" id="post-{{this._id}}">
       <div class="post-header">
       <img src="{{this.author.profilePic}}" class="profile-pic" />
-      {{this.author.username}}<br />
-      <img src="{{this.image_url}}" /><br />
-
 
       <span class="user-name">{{this.author.username}}</span><br>
       <span class="time-ago">{{timeAgo this.timestamp}}</span><br />
@@ -33,11 +30,15 @@
           {{/each}}
         </div>
     </li>
-    
+
      Comments:<br />
+     <div class="comment-section" id="comment-section-{{this.id}}">
       {{#each this.comments}}
-      <span class="commented-by">{{this.author}}: {{this.message}}</span><br />
+      <div class="comment-object">
+        <span >{{this.author}} : {{this.message}} {{timeAgo this.timestamp}}</span> 
+      </div>
       {{/each}}
+      </div>
 
 
       <div>
