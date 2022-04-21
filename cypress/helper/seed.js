@@ -42,7 +42,7 @@ const seedDB = async () => {
       "It's not who you are underneath, it's what you do that defines you.",
     image_url: "https://picsum.photos/536/354",
     author: batman,
-    likes: ["Robin", "Joker", "Penguin"],
+    likes: ["Robin", "Joker", "Penguin", "batman"],
   });
 
   await post1.save();
@@ -61,7 +61,7 @@ const seedDB = async () => {
     message: "Why so serious?",
     image_url: "https://picsum.photos/536/354",
     author: joker,
-    likes: ["Robin", "Batman", "Penguin"],
+    likes: ["Robin", "Penguin"],
   });
 
   await post3.save();
