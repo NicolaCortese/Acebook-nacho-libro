@@ -342,7 +342,10 @@ button.Unlike-button {
 }
 
 /* forms */
-textarea, input[type=text] {
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   resize: none;
   width: 100%;
   height: 40px;
@@ -354,6 +357,121 @@ textarea, input[type=text] {
   letter-spacing: 1.5px;
 }
 
+input[type="date"] {
+  padding: 10px;
+  margin: 20px 0 20px 0;
+}
+
+input[type="submit"].form-submit {
+  padding: 10px;
+  margin: 20px 0 20px 0;
+  background-color: #e9efc0;
+  outline: none;
+  border: none;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+input[type="submit"].form-submit:hover {
+  background-color: rgb(183, 216, 244);
+  color: white;
+  cursor: pointer;
+}
+
 textarea {
   height: 150px;
+}
+
+/* profile page */
+
+ul#profile-ul {
+  list-style-type: none;
+  margin-left: 130px;
+  margin-top: -22px;
+}
+
+li.profile-li {
+  line-height: 23px;
+  padding-left: 24px;
+}
+
+#profile-pic {
+  max-width: 150px;
+  height: 150px;
+  float: left;
+  margin-bottom: 20px;
+  border-radius: 12px;
+}
+.profile-logos {
+  float: left;
+  opacity: 1;
+  width: 20px;
+  height: 20px;
+  line-height: 23px;
+  padding: 10px;
+}
+
+li#birthday {
+  background: url("/images/birthday-cake.png") 0 0 / 17px 17px no-repeat;
+}
+
+li#works-at {
+  background: url("/images/working.png") 0 0 / 17px 17px no-repeat;
+}
+
+li#hobbies {
+  background: url("/images/guitar.png") 0 0 / 17px 17px no-repeat;
+}
+
+li#lives-in {
+  background: url("/images/location.png") 0 0 / 17px 17px no-repeat;
+}
+
+li#settings-link {
+  background: url("/images/editing.png") 0 0 / 17px 17px no-repeat;
+}
+
+#cover-photo {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  background-repeat: no-repeat;
+}
+
+div#profile-details {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  margin: -80px 40px 0px 40px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.profile-username {
+  margin-left: 170px;
+  margin-top: 0px;
+  text-transform: capitalize;
+  font-size: 26px;
+}
+
+.editProfile {
+  text-decoration: none;
+  color: black;
+}
+
+.btnProfile {
+  background-color: #e9efc0;
+  outline: none;
+  border-radius: 8px;
+  border: 2px grey solid;
+  transition: 0.3s;
+}
+
+.btnProfile:hover {
+  background-color: rgb(169, 221, 215);
+  outline: none;
+  border-radius: 8px;
 }

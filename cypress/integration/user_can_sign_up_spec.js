@@ -1,7 +1,7 @@
 describe("Registration", () => {
   it("A user signs up and is redirected to the settings page", () => {
     // sign up from the homepage
-    cy.visit("/");
+    cy.visit("/users/new");
     cy.get("#signup").click();
     cy.get("#username").type("someone");
     cy.get("#email").type("someone@example.com");
@@ -18,10 +18,10 @@ describe("Registration", () => {
     );
 
     //fills in form
-    cy.get("#coverPhoto").type("https://picsum.photos/100/100");
+
     cy.get("#birthday").type("2000-01-01");
-    cy.get("#livesIn").type("Maracaibo");
-    cy.get("#worksAt").type("NASA");
+    cy.get("#lives-in").type("Maracaibo");
+    cy.get("#works-at").type("NASA");
     cy.get("#hobbies").type("Sailing, Bowling and Eating");
     cy.get("#submit").click();
 
@@ -41,17 +41,17 @@ describe("Registration", () => {
 
     //redirects to profile page
     cy.url().should("include", "/users/someone/profile");
-    cy.get("#coverPhotoDiv").find("img").should("be.visible");
-    cy.get("#profilePicDiv").find("img").should("be.visible");
+    cy.get("#profile-details").find("#profile-pic").should("be.visible");
+    cy.get("#main-container").find("#cover-photo").should("be.visible");
 
-    cy.get("#birthday").should("contain", "01/01/200");
-    cy.get("#livesIn").should("contain", "Maracaibo");
-    cy.get("#worksAt").should("contain", "NASA");
-    cy.get("#hobbies").should("contain", "Sailing, Bowling and Eating");
-    cy.get(".editProfile").should("contain", "Edit Profile");
+    cy.get("#profile-details")
+      .should("contain", "01/01/200")
+      .and("contain", "Maracaibo")
+      .and("contain", "NASA")
+      .and("contain", "Sailing, Bowling and Eating");
+
+    cy.get(".edit-profile").should("contain", "Edit Profile");
   });
-
-  
 
   it("will not sign up if the email already exists", () => {
     // sign up
