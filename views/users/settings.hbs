@@ -1,0 +1,31 @@
+<h1> Edit Profile</h1>
+
+<form id="" action="/users/{{ username }}/update" method="post">
+  <label for="profilePic">Profile picture URL: </label>
+  <input
+    id="profilePic"
+    type="text"
+    name="profilePic"
+    value="https://picsum.photos/100/100"
+  />
+  <label for="coverPhoto">Cover photo URL: </label>
+  <input
+    id="coverPhoto"
+    type="text"
+    name="coverPhoto"
+    value="https://picsum.photos/100/100"
+  />
+  <label for="birthday">Birthday: </label>
+  <input id="birthday" type="date" name="birthday" value="" />
+
+  <label for="livesIn">Lives in: </label>
+  <input id="livesIn" type="text" name="livesIn" value="" />
+
+  <label for="worksAt">Works at: </label>
+  <input id="worksAt" type="text" name="worksAt" value="" />
+
+  <label for="hobbies">Hobbies: </label>
+  <input id="hobbies" type="text" name="hobbies" value="" />
+
+  <input id="submit" type="submit" value="Save Changes" />
+</form>

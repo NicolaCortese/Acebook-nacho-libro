@@ -11,7 +11,7 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('#message').type("Batman post");
     cy.get("#new-post-form").submit();
     // check if batman's posts show on a profile page
-    cy.visit("/users/profile");
+    cy.visit("/users/batman/profile");
     cy.get(".posts").should(
       "contain",
       "Batman post",
@@ -29,7 +29,7 @@ describe("Timeline", () => {
      cy.get("#new-post-form").find('#message').type("Joker post");
      cy.get("#new-post-form").submit();
     // check if joker's posts show on a profile page
-    cy.visit("/users/profile");
+    cy.visit("/users/joker/profile");
     cy.get(".posts").should(
       "contain",
       "Joker post",
