@@ -35,7 +35,9 @@
      <div class="comment-section" id="comment-section-{{this.id}}">
       {{#each this.comments}}
       <div class="comment-object">
-        <span >{{this.author}} : {{this.message}} {{timeAgo this.timestamp}}</span> 
+        <p class="comment-author">{{this.author}}</p>
+        <p class="comment-text">{{this.message}} </p>
+        <p class="comment-timeago">{{timeAgo this.timestamp}}</p> 
       </div>
       {{/each}}
       </div>

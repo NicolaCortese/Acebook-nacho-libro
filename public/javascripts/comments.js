@@ -53,8 +53,8 @@ const updateComments = (data) => {
     text.innerText = comment.message
     commentObject.append(text)
 
-    let time = document.createElement("time")
-    time.className = "timeago"
+    let time = document.createElement("p")
+    time.className = "comment-timeago"
     // time.dateTime = comment.timestamp
     time.innerText = moment().to(comment.timestamp)
     commentObject.append(time)
