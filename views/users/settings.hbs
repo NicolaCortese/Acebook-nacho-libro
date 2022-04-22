@@ -1,31 +1,49 @@
 <h1> Edit Profile</h1>
 
-<form id="" action="/users/{{username}}/update" method="post">
-  <label for="profilePic">Profile picture URL: </label>
+<form action="/users/{{username}}/update" method="post">
+  {{#if (equal username session.username)}}
+ <label for="profilePic">Profile picture URL: </label>
   <input
     id="profilePic"
     type="text"
     name="profilePic"
-    value="https://picsum.photos/100/100"
+    value="{{session.profilePic}}"
   />
   <label for="cover-photo">Cover photo URL: </label>
   <input
     id="coverPhoto"
     type="text"
     name="coverPhoto"
-    value="https://picsum.photos/800/200"
+    value="{{session.coverPhoto}}"
   />
+  {{else}}
+ <label for="profilePic">Profile picture URL: </label>
+  <input
+    id="profilePic"
+    type="text"
+    name="profilePic"
+    value="https://picsum.photos/200/200"
+  />
+  <label for="cover-photo">Cover photo URL: </label>
+  <input
+    id="coverPhoto"
+    type="text"
+    name="coverPhoto"
+    value="https://picsum.photos/900/300"
+  />
+  {{/if}}
+
   <label for="birthday">Birthday: </label><br />
-  <input id="birthday" type="date" name="birthday" value="" /><br />
+  <input id="birthday" type="date" name="birthday" value="{{ dateFormat session.birthday "YYYY-MM-DD" }}" /><br />
 
   <label for="livesIn">Lives in: </label>
-  <input id="livesIn" type="text" name="livesIn" value="" />
+  <input id="livesIn" type="text" name="livesIn" value="{{session.livesIn}}" />
 
   <label for="worksAt">Works at: </label>
-  <input id="worksAt" type="text" name="worksAt" value="" />
+  <input id="worksAt" type="text" name="worksAt" value="{{session.worksAt}}" />
 
   <label for="hobbies">Hobbies: </label>
-  <input id="hobbies" type="text" name="hobbies" value="" />
+  <input id="hobbies" type="text" name="hobbies" value="{{session.hobbies}}" />
 
   <input id="submit" type="submit" class="form-submit" value="Save Changes" />
 </form>

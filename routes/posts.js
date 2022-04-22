@@ -11,5 +11,6 @@ router.post("/:id/save", PostsController.Save);
 router.get("/new", PostsController.New);
 router.post("/:id/Like", PostsController.Like);
 router.post("/:id/Unlike", PostsController.Unlike);
+router.post("/:id/comment", PostsController.Comment);
 
 module.exports = router;

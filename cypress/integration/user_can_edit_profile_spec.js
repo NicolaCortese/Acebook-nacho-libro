@@ -1,5 +1,5 @@
-describe('Update settings', () => {
-  it('redirects to the profile page', () => {
+describe("Update settings", () => {
+  it("redirects to the profile page", () => {
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("batman@example.com");

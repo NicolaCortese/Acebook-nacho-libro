@@ -34,12 +34,21 @@
   {{#unless (equal profile.user.username session.username)}}
   <h1 style="text-align: center; margin-top: 40px;">{{profile.user.username}}'s posts</h1>
   {{/unless}}
+
+  {{#if (empty profile.posts)}}
+  {{#if (equal profile.user.username session.username)}}
+  <h4 style="text-align: center;">You haven't posted just yet. Why don't you <a href="/posts/new">do it</a> now?</h4>
+  {{/if}}
+  {{#unless (equal profile.user.username session.username)}}
+  <h4 style="text-align: center;">{{profile.user.username}} hasn't posted yet.</h4>
+  {{/unless}}
+  {{/if}}
 <ul class="posts">
   {{#each (reverse profile.posts)}}
     <li class="post" id="post-{{this._id}}">
       <div class="post-header">
       <img src="{{this.author.profilePic}}" class="profile-pic" />
-      <span class="user-name">{{this.author.username}}</span><br>
+      <span class="user-name" onclick="location='/users/{{this.author.username}}/profile'">{{this.author.username}}</span><br>
       <span class="time-ago">{{timeAgo this.timestamp}}</span><br />
       <button class="{{ifLiked this.likes ../session.username}}-button" id="{{this._id}}">
         {{ifLiked this.likes ../session.username}}
@@ -63,9 +72,26 @@
           {{/each}}
         </div>
     </li>
+
+     Comments:<br />
+     <div class="comment-section" id="comment-section-{{this.id}}">
+      {{#each this.comments}}
+      <div class="comment-object">
+        <p class="comment-author">{{this.author}}</p>
+        <p class="comment-text">{{this.message}} </p>
+        <p class="comment-timeago">{{timeAgo this.timestamp}}</p> 
+      </div>
+      {{/each}}
+      </div>
+
+
+      <div id="comment-box">
+        <textarea id="text-comment-{{this._id}}" type="text"  placeholder="comment here" class="comment-text-area"></textarea><br />
+        <input type="button" value="Comment" class="comment-button" id="comment-{{this._id}}">
+      </div>
+
   {{/each}}
 </ul>
-
 
 
 

@@ -6,7 +6,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
       res.render("posts/index", { posts: posts });
     });
   },
@@ -37,7 +36,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
       res.render("posts/edit", { post: post[0] });
     });
   },
@@ -60,7 +58,6 @@ const PostsController = {
 
   Delete: (req, res) => {
     const post_id = req.params.id;
-    console.log(post_id);
     Post.deleteOne({ _id: post_id }, () => {
       req.session.message = {
         type: "info",
@@ -83,6 +80,7 @@ const PostsController = {
     );
     res.send(result);
   },
+
   Unlike: async (req, res) => {
     const post_id = req.body.post_id;
     const user = req.session.user;
@@ -96,6 +94,21 @@ const PostsController = {
     );
     res.send(result);
   },
+  
+  Comment: async (req, res) => {
+    const post_id = req.body.post_id;
+    const text = req.body.text
+    const user = req.session.user;
+   
+    let result = await Post.findOneAndUpdate(
+      { _id: post_id },
+      { $push: { comments: {author: user.username, message: text}} },
+      {
+        new: true,
+      }
+    );
+    res.send(result);
+  }
 };
 
 module.exports = PostsController;
