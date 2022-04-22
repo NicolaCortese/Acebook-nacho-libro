@@ -13,11 +13,11 @@ body {
 
 a {
   text-decoration: none;
-  color: #A2CDF0ff;
+  color: #a2cdf0ff;
 }
 
 a:hover {
-  color: #79B7E6ff;
+  color: #79b7e6ff;
 }
 
 /* headers */
@@ -177,6 +177,10 @@ img.profile-pic {
 
 span.user-name {
   font-size: 17px;
+}
+
+span.user-name:hover {
+  text-decoration: underline;
 }
 
 span.time-ago {
