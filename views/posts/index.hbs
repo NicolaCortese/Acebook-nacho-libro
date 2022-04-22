@@ -2,6 +2,7 @@
 
 <ul class="posts">
   {{#each (reverse posts)}}
+    <div class="full-post">
     <li class="post" id="post-{{this._id}}">
       <div class="post-header">
       <img src="{{this.author.profilePic}}" class="profile-pic" />
@@ -30,7 +31,7 @@
         </div>
     </li>
 
-     Comments:<br />
+     <p id="comment-header" label="Comments"> Comments:</p>
      <div class="comment-section" id="comment-section-{{this.id}}">
       {{#each this.comments}}
       <div class="comment-object">
@@ -45,6 +46,7 @@
       <div id="comment-box">
         <textarea id="text-comment-{{this._id}}" type="text"  placeholder="comment here" class="comment-text-area"></textarea><br />
         <input type="button" value="Comment" class="comment-button" id="comment-{{this._id}}">
+      </div>
       </div>
 
   {{/each}}
