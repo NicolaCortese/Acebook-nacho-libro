@@ -431,7 +431,7 @@ li#lives-in {
 }
 
 li#settings-link {
-  background: url("/images/editing.png") 0 0 / 17px 17px no-repeat;
+  background: url("/images/editing.png") 0 21px / 17px 17px no-repeat;
 }
 
 #cover-photo {
@@ -445,7 +445,7 @@ li#settings-link {
 div#profile-details {
   position: relative;
   background-color: rgb(255, 255, 255);
-  margin: -80px 40px 0px 40px;
+  margin: -70px 40px 0px 40px;
   padding: 20px;
   border-radius: 20px;
 }
@@ -457,7 +457,7 @@ div#profile-details {
   font-size: 26px;
 }
 
-.editProfile {
+.edit-profile {
   text-decoration: none;
   color: black;
 }
@@ -465,8 +465,9 @@ div#profile-details {
 .btnProfile {
   background-color: #e9efc0;
   outline: none;
+  margin: 20px 0 0 0px;
   border-radius: 8px;
-  border: 2px grey solid;
+  border: 1.5px rgb(89, 146, 109) solid;
   transition: 0.3s;
 }
 

@@ -104,14 +104,19 @@ const UsersController = {
         },
       },
       () => {
-        req.session.message = {
-          type: "success",
-          message: "Thanks for adding the info! Please sign in.",
-        };
+        
         console.log("Update is running...");
         if (!req.session.user) {
+          req.session.message = {
+            type: "success",
+            message: "Thanks for adding the info! Please sign in",
+          };
           res.redirect("/sessions/new");
         } else {
+          req.session.message = {
+            type: "success",
+            message: "Thanks for adding the info!",
+          };
           res.redirect(`/users/${username}/profile`);
         }
       }
