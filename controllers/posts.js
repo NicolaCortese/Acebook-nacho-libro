@@ -96,6 +96,20 @@ const PostsController = {
     );
     res.send(result);
   },
+  Comment: async (req, res) => {
+    const post_id = req.body.post_id;
+    const text = req.body.text
+    const user = req.session.user;
+   
+    let result = await Post.findOneAndUpdate(
+      { _id: post_id },
+      { $push: { comments: {author: user.username, message: text}} },
+      {
+        new: true,
+      }
+    );
+    res.send(result);
+  }
 };
 
 module.exports = PostsController;

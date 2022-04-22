@@ -29,5 +29,23 @@
           {{/each}}
         </div>
     </li>
+
+     Comments:<br />
+     <div class="comment-section" id="comment-section-{{this.id}}">
+      {{#each this.comments}}
+      <div class="comment-object">
+        <p class="comment-author">{{this.author}}</p>
+        <p class="comment-text">{{this.message}} </p>
+        <p class="comment-timeago">{{timeAgo this.timestamp}}</p> 
+      </div>
+      {{/each}}
+      </div>
+
+
+      <div id="comment-box">
+        <textarea id="text-comment-{{this._id}}" type="text"  placeholder="comment here" class="comment-text-area"></textarea><br />
+        <input type="button" value="Comment" class="comment-button" id="comment-{{this._id}}">
+      </div>
+
   {{/each}}
 </ul>

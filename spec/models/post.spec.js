@@ -85,4 +85,19 @@ describe("Post model", () => {
       });
     });
   });
+
+  it("can comment on a post", (done) => {
+    let post = new Post({ message: "message to be commented on", comments: {message: "great comment", author: "somebody"} });
+    post.save((err) => {
+      expect(err).toBeNull();
+      
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts[0].message).toEqual("message to be commented on");
+        expect(posts[0].comments[0].message).toContain("great comment");
+        expect(posts[0].comments[0].author).toEqual("somebody")
+        done();
+      });
+    });
+  })
 });
