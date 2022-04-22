@@ -40,7 +40,6 @@ const updateComments = (data) => {
     commentSectionEl.append(commentObject)
     console.log(comment._id)
     
-    
     let name = document.createElement("p")
     name.className = "comment-author"
     name.innerText = comment.author
