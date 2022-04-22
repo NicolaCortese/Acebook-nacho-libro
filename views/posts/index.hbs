@@ -5,8 +5,7 @@
     <li class="post" id="post-{{this._id}}">
       <div class="post-header">
       <img src="{{this.author.profilePic}}" class="profile-pic" />
-
-      <span class="user-name">{{this.author.username}}</span><br>
+      <span class="user-name" onclick="location='/users/{{this.author.username}}/profile'">{{this.author.username}}</span><br>
       <span class="time-ago">{{timeAgo this.timestamp}}</span><br />
       <button class="{{ifLiked this.likes ../session.username}}-button" id="{{this._id}}">
         {{ifLiked this.likes ../session.username}}

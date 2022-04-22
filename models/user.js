@@ -16,6 +16,21 @@ const UserSchema = new mongoose.Schema({
   profilePic: {
     type: String,
   },
+  coverPhoto: {
+    type: String,
+  },
+  birthday: {
+    type: Date,
+  },
+  livesIn: {
+    type: String,
+  },
+  worksAt: {
+    type: String,
+  },
+  hobbies: {
+    type: String,
+  },
 });
 
 const User = mongoose.model("User", UserSchema);

@@ -96,4 +96,4 @@ Some people occasionally experience MongoDB connection errors when running the t
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
 
 ## Credits
-Images: [heart icon](https://www.flaticon.com/free-icon/heart_1216811?related_id=1216649&origin=search), [logo](https://www.flaticon.com/free-icon/nachos_390248?term=nachos&page=1&position=56&page=1&position=56&related_id=390248&origin=search)
+Images: [heart icon](https://www.flaticon.com/free-icon/heart_1216811?related_id=1216649&origin=search), [logo](https://www.flaticon.com/free-icon/nachos_390248?term=nachos&page=1&position=56&page=1&position=56&related_id=390248&origin=search), [desk](https://www.flaticon.com/free-icons/desk), [guitar](https://www.flaticon.com/free-icons/hobbies-and-free-time), [location](https://www.flaticon.com/free-icons/hotel), [bday](https://www.flaticon.com/free-icons/birthday)
