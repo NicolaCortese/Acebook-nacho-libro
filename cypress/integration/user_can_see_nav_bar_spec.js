@@ -1,6 +1,6 @@
 describe("Nav bar", () => {
   it("checks it contains all nav elements if not signed in", () => {
-    cy.visit("/");
+    cy.visit("/posts");
     cy.get("#li-sign-in").should("contain", "Sign in");
     cy.get("#li-sign-up").should("contain", "Sign up");
   });
