@@ -4,19 +4,14 @@ const Post = require("../models/post");
 
 const UsersController = {
   New: (req, res) => {
-    console.log(req.session.user);
     res.render("users/new", {});
   },
 
   Create: async (req, res) => {
-    // console.log(req.body);
     const user = new User(req.body);
-
-    // Hash the password
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
 
-    // Stay on the same page when fields are empty.
     if (!user.username || !user.email || !user.password) {
       req.session.message = {
         type: "danger",
@@ -51,7 +46,6 @@ const UsersController = {
           type: "success",
           message: "You are now registered! Please edit your profile.",
         };
-        console.log(`User information: ${user}`);
         user.save((err) => {
           if (err) {
             throw err;
@@ -71,7 +65,6 @@ const UsersController = {
           });
         });
       } else {
-        //user not found
         const error = {
           status: `The user "${username}" has not been found`,
         };
@@ -81,7 +74,6 @@ const UsersController = {
   },
 
   Settings: (req, res) => {
-    console.log("User settings running...");
     const username = req.params.username;
 
     res.render("users/settings", { username: username });
@@ -90,7 +82,6 @@ const UsersController = {
   Update: (req, res) => {
     const username = req.params.username;
     const userInfo = req.body;
-    console.log(userInfo);
     User.updateOne(
       { username: username },
       {
@@ -104,14 +95,17 @@ const UsersController = {
         },
       },
       () => {
-        req.session.message = {
-          type: "success",
-          message: "Thanks for adding the info! Please sign in.",
-        };
-        console.log("Update is running...");
         if (!req.session.user) {
+          req.session.message = {
+            type: "success",
+            message: "Thanks for adding the info! Please sign in",
+          };
           res.redirect("/sessions/new");
         } else {
+          req.session.message = {
+            type: "success",
+            message: "Thanks for adding the info!",
+          };
           res.redirect(`/users/${username}/profile`);
         }
       }

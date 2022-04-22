@@ -6,7 +6,7 @@ describe("Other likes on a post", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    // checks the accordion
+    // checks if the names show up
     cy.get(".tooltiptext").first().should("contain", "Robin");
     cy.get(".tooltiptext").first().should("contain", "Penguin");
   });

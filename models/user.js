@@ -13,24 +13,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  profilePic: {
-    type: String,
-  },
-  coverPhoto: {
-    type: String,
-  },
-  birthday: {
-    type: Date,
-  },
-  livesIn: {
-    type: String,
-  },
-  worksAt: {
-    type: String,
-  },
-  hobbies: {
-    type: String,
-  },
+  profilePic: String,
+  coverPhoto: String,
+  birthday: Date,
+  livesIn: String,
+  worksAt: String,
+  hobbies: String,
 });
 
 const User = mongoose.model("User", UserSchema);

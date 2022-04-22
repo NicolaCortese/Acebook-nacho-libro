@@ -11,11 +11,29 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: #A2CDF0ff;
+}
+
+a:hover {
+  color: #79B7E6ff;
+}
+
 /* headers */
 
 h1 {
   text-transform: capitalize;
   padding-left: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+h4 {
+  text-align: center;
+  font-style: italic;
+  font-weight: lighter;
+  margin-left: 10px;
 }
 
 /* main */
@@ -378,6 +396,7 @@ input[type="submit"].form-submit {
 input[type="submit"].form-submit:hover {
   background-color: rgb(183, 216, 244);
   color: white;
+  padding: 3px;
   cursor: pointer;
 }
 
@@ -431,7 +450,7 @@ li#lives-in {
 }
 
 li#settings-link {
-  background: url("/images/editing.png") 0 0 / 17px 17px no-repeat;
+  background: url("/images/editing.png") 0 10px / 17px 17px no-repeat;
 }
 
 #cover-photo {
@@ -445,7 +464,7 @@ li#settings-link {
 div#profile-details {
   position: relative;
   background-color: rgb(255, 255, 255);
-  margin: -80px 40px 0px 40px;
+  margin: -70px 40px 0px 40px;
   padding: 20px;
   border-radius: 20px;
 }
@@ -457,7 +476,7 @@ div#profile-details {
   font-size: 26px;
 }
 
-.editProfile {
+.edit-profile {
   text-decoration: none;
   color: black;
 }
@@ -465,8 +484,9 @@ div#profile-details {
 .btnProfile {
   background-color: #e9efc0;
   outline: none;
+  margin: 10px 0 0 0px;
   border-radius: 8px;
-  border: 2px grey solid;
+  border: 1.5px rgb(89, 146, 109) solid;
   transition: 0.3s;
 }
 

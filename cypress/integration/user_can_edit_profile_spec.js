@@ -6,18 +6,25 @@ describe("Update settings", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    // redirected to the settings page
-    cy.visit("/users/batman/settings");
+    // navigate to the settings page
 
-    //fills in form
+    cy.get("#nav-img").click()
+    cy.get(".edit-profile").click();
+
+    // fill in the form
+
     cy.get("#birthday").type("2000-01-01");
-    cy.get("#lives-in").type("Maracaibo");
-    cy.get("#works-at").type("NASA");
+    cy.get("#livesIn").type("Maracaibo");
+    cy.get("#worksAt").type("NASA");
     cy.get("#hobbies").type("Sailing, Bowling and Eating");
     cy.get("#submit").click();
 
-    // Check that the details have been updated
+    //redirect back to the profile page
     cy.url().should("include", "/users/batman/profile");
+    cy.get("#content").should(
+      "contain",
+      "Thanks for adding the info!"
+    );
     cy.get("#profile-details").find("#profile-pic").should("be.visible");
     cy.get("#main-container").find("#cover-photo").should("be.visible");
 
@@ -26,7 +33,5 @@ describe("Update settings", () => {
       .and("contain", "Maracaibo")
       .and("contain", "NASA")
       .and("contain", "Sailing, Bowling and Eating");
-
-    cy.get(".edit-profile").should("contain", "Edit Profile");
   });
-});
+})
