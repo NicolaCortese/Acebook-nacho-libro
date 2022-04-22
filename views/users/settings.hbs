@@ -1,32 +1,31 @@
 <h1> Edit Profile</h1>
 
 <form id="" action="/users/{{username}}/update" method="post">
-  <label for="profilePic">Profile picture URL: </label>
+  <label for="profile-pic">Profile picture URL: </label>
   <input
-    id="profilePic"
+    id="profile-pic"
     type="text"
-    name="profilePic"
+    name="profile-pic"
     value="https://picsum.photos/100/100"
   />
-  <label for="coverPhoto">Cover photo URL: </label>
+  <label for="cover-photo">Cover photo URL: </label>
   <input
-    id="coverPhoto"
+    id="cover-photo"
     type="text"
-    name="coverPhoto"
-    value="https://picsum.photos/100/100"
+    name="cover-photo"
+    value="https://picsum.photos/800/200"
   />
-  <label for="birthday">Birthday: </label>
-  <input id="birthday" type="date" name="birthday" value="" />
+  <label for="birthday">Birthday: </label><br />
+  <input id="birthday" type="date" name="birthday" value="" /><br />
 
-  <label for="livesIn">Lives in: </label>
-  <input id="livesIn" type="text" name="livesIn" value="" />
+  <label for="lives-in">Lives in: </label>
+  <input id="lives-in" type="text" name="livesIn" value="" />
 
-  <label for="worksAt">Works at: </label>
-  <input id="worksAt" type="text" name="worksAt" value="" />
+  <label for="works-at">Works at: </label>
+  <input id="works-at" type="text" name="worksAt" value="" />
 
   <label for="hobbies">Hobbies: </label>
   <input id="hobbies" type="text" name="hobbies" value="" />
 
-  <input id="submit" type="submit" value="Save Changes" />
-
+  <input id="submit" type="submit" class="form-submit" value="Save Changes" />
 </form>
