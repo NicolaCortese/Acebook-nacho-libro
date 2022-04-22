@@ -16,43 +16,8 @@ describe("Registration", () => {
       "contain",
       "You are now registered! Please edit your profile."
     );
-
-    //fills in form
-
-    cy.get("#birthday").type("2000-01-01");
-    cy.get("#lives-in").type("Maracaibo");
-    cy.get("#works-at").type("NASA");
-    cy.get("#hobbies").type("Sailing, Bowling and Eating");
-    cy.get("#submit").click();
-
-    //redirect to sign in
-    cy.url().should("include", "/sessions/new");
-    cy.get("#content").should(
-      "contain",
-      "Thanks for adding the info! Please sign in."
-    );
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
-    //redirect to posts
-    cy.url().should("include", "/posts");
-    cy.get("#li-profile").click();
-
-    //redirects to profile page
-    cy.url().should("include", "/users/someone/profile");
-    cy.get("#profile-details").find("#profile-pic").should("be.visible");
-    cy.get("#main-container").find("#cover-photo").should("be.visible");
-
-    cy.get("#profile-details")
-      .should("contain", "01/01/200")
-      .and("contain", "Maracaibo")
-      .and("contain", "NASA")
-      .and("contain", "Sailing, Bowling and Eating");
-
-    cy.get(".edit-profile").should("contain", "Edit Profile");
   });
-
+  
   it("will not sign up if the email already exists", () => {
     // sign up
     cy.visit("/users/new");

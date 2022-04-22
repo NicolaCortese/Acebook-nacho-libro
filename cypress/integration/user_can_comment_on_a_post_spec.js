@@ -17,7 +17,5 @@ describe("comment", () => {
     cy.get("#comment-box").find(".comment-text-area").type("Nice comment");
     cy.get(".comment-button").first().click();
     cy.get(".comment-object").first().should("contain", "Nice comment");
-
-
   })
 })

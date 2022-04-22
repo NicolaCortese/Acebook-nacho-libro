@@ -40,7 +40,6 @@ app.use(
 // Flash Notice Middleware
 app.use((req, res, next) => {
   res.locals.message = req.session.message;
-  // Delete on reload
   delete req.session.message;
   next();
 });
@@ -48,13 +47,11 @@ app.use((req, res, next) => {
 // passing the user in session to a local session variable on the response
 app.use((req, res, next) => {
   res.locals.session = req.session.user;
-  // console.log(res.locals.session);
   next();
 });
 
 // clear the cookies after user logs out
 app.use((req, res, next) => {
-  console.log("checking if clearing cookies");
   if (req.cookies.user_sid && !req.session.user) {
     res.clearCookie("user_sid");
   }
@@ -63,10 +60,6 @@ app.use((req, res, next) => {
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
-  // console.log(req.session);
-  // console.log("END OF req SESSION");
-  // console.log(res);
-  // console.log("END OF res");
   if (!req.session.user && !req.cookies.user_sid) {
     res.redirect("/sessions/new");
   } else {
@@ -80,7 +73,6 @@ app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 
-// because it has no path every request will come through this
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   console.log("catch 404");
@@ -110,7 +102,7 @@ handlebars.registerHelper("ifLiked", (postLikedBy, sessionUser) => {
 });
 handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow());
 handlebars.registerHelper("equal", (one, two) => one === two);
-// handlebars.registerHelper("bdayFormat", (bdayDate) => moment(bdayDate).format("DD/MM/YYYY"));
-handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
+handlebars.registerHelper("dateFormat", require("handlebars-dateformat"));
+handlebars.registerHelper("empty", (element) => element.length === 0);
 
 module.exports = app;

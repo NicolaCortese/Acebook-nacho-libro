@@ -17,9 +17,7 @@ const onCommentButtonClick = (element) => {
       post_id: element.id.replace("comment-",""),
     })
     .then((response) => {
-      // console.log(response.data.comments);
       removeComments(response.data);
-
       updateComments(response.data);
       document.querySelector(`#text-${element.id}`).value = ""
     })
@@ -32,13 +30,11 @@ const onCommentButtonClick = (element) => {
 const updateComments = (data) => {
   let commentSectionEl = document.querySelector(`#comment-section-${data._id}`)
   
-  
   data.comments.forEach(comment => {
    
     let commentObject = document.createElement('div')
     commentObject.className = `comment-object`
     commentSectionEl.append(commentObject)
-    console.log(comment._id)
     
     let name = document.createElement("p")
     name.className = "comment-author"
@@ -56,16 +52,11 @@ const updateComments = (data) => {
     time.className = "comment-timeago"
     time.innerText = moment().to(comment.timestamp)
     commentObject.append(time)
-    
-
   })
 }
 /* eslint-enable */
 
 const removeComments = (data) => {
-    console.log(data._id)
     let section = document.querySelector(`#comment-section-${data._id}`)
-
     section.innerHTML = ""
 }
-
