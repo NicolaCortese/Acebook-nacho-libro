@@ -481,7 +481,7 @@ div#profile-details {
 .comment-author {
   font-weight: bold;
   font-size: 110%;
-  color: rgb(20, 168, 7);
+  color: rgb(255 185 102 / 86%);
 }
 
 .comment-timeago {
