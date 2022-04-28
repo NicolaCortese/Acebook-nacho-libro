@@ -139,16 +139,22 @@ Images: [heart icon](https://www.flaticon.com/free-icon/heart_1216811?related_id
 
 ## Screenshots
 
-![Timeline]('./docs/nacho_libro_timeline.gif)
+### Timeline
 
-![New Post]('./docs/nacho_libro_new_post.gif)
+![Timeline](/docs/nacho_libro_timeline.gif)
 
-![Profile]('./docs/nacho_libro_profile.gif)
+### New Post
+
+![New Post](/docs/nacho_libro_new_post.gif)
+
+### Profile Page
+
+![Profile](/docs/nacho_libro_profile.gif)
 
 ---
 
 ## Domain & Process Modeling
 
-![Process Modeling]('./docs/process-modeling-1.png)
+![Process Modeling](/docs/process-modeling-1.png)
 
-![Process Modeling]('./docs/process-modeling-2.png)
+![Process Modeling](/docs/process-modeling-2.png)
