@@ -2,7 +2,11 @@
 
 [![Nachos](https://github.com/NicolaCortese/Acebook-nacho-libro/actions/workflows/test.yml/badge.svg)](https://github.com/NicolaCortese/Acebook-nacho-libro/actions/workflows/test.yml)
 
-We are creating an application where users can interact with each other. This can be done by signing up, personalizing their profile page, creating posts, liking and commenting on other peoples posts.
+## [Nacho Libro](https://nacho-libro.onrender.com/posts) Social Media Website
+
+_(Please allow a few minutes to load on your first visit)_
+
+We have created an application where users can interact with each other. This can be done by signing up, personalizing their profile page, creating posts, liking and commenting on other peoples posts.
 
 ## Quickstart
 
@@ -131,7 +135,19 @@ Images: [heart icon](https://www.flaticon.com/free-icon/heart_1216811?related_id
 - [Jasmine Cheung](https://github.com/jazzc001)<br>
 - [Henry Ferrari](https://github.com/HCVF)
 
+---
+
+## Screenshots
+
+![Timeline]('/docs/nacho_libro_timeline.gif)
+
+![New Post]('/docs/nacho_libro_new_post.gif)
+
+![Profile]('/docs/nacho_libro_profile.gif)
+
+---
+
 ## Domain & Process Modeling
 
-![Process Modeling]('./../public/images/process-modeling-1.png)
-![Process Modeling]('./../public/images/process-modeling-2.png)
+![Process Modeling]('/docs/process-modeling-1.png)
+![Process Modeling]('/docs/process-modeling-2.png)
